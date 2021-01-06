@@ -3,7 +3,10 @@ package Java.Logic;
 public class Validator {
     
 
-    public boolean percentageValidator(int number){
+    static boolean percentageValidator(int number){
+        //any number lower than zero is invalid
+        //any number higher than one hundred is invalid
+
         if(number >= 0 && number <= 100){
             return true; 
         }
@@ -11,7 +14,10 @@ public class Validator {
         return false;
     }
 
-    public boolean gradeValidator(int number){
+    static boolean gradeValidator(int number){
+        //any number lower than one is invalid
+        //any number higher than ten is invalid
+
         if(number >= 1 && number <= 10){
             return true; 
         }
@@ -20,9 +26,8 @@ public class Validator {
     }
 
 
-    public boolean emailValidator(String email) {
+    static boolean emailValidator(String email) {
         //Explain of the regex key
-
         //^	The beginning of a line
         //[] A group of
         //\\ disables in line code like \n
@@ -31,6 +36,7 @@ public class Validator {
         //() as a capturing group
         //$	The end of a line
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        // return outcome determined whether email matches the regex key
         return email.matches(regex);
     }
 }
