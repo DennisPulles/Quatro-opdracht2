@@ -6,7 +6,7 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*; 
 import javafx.stage.Stage; 
 
-public class TestFXQuatro extends Application { 
+public class Main extends Application { 
     public void start(Stage primaryStage) 
     { 
         primaryStage.setTitle("Codecademy"); 
