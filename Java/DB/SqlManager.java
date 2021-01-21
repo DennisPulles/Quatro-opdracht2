@@ -36,23 +36,23 @@ public class SqlManager {
         return rs;
     }
     
-    // private String createSelectSql(String type, String ID){
-    //     String attribute = "";
-    //     String join = "";
-    //     switch (type){
-    //         case "Course":
-    //             attribute = "CourseName";
-    //             break;
-    //         case "Student":
-    //             attribute = "StudentEmail";
-    //             break;
-    //         case "ContentItem": 
-    //             attribute = "ContentItemID";
-    //             join = ""
-    //     }
-    //     query = "SELECT * FROM " + type + "WHERE " + attribute + " = " + ID;
-    //     return query;
-    // }
+    private String createSelectSql(String type, String ID){
+        String attribute = "";
+        String join = "";
+        switch (type){
+            case "Course":
+                attribute = "CourseName";
+                break;
+            case "Student":
+                attribute = "StudentEmail";
+                break;
+            case "ContentItem": 
+                attribute = "ContentItemID";
+                join = ""
+        }
+        query = "SELECT * FROM " + type + "WHERE " + attribute + " = " + ID;
+        return query;
+    }
 
     private String createInsertSql(String type, String[] input){
         String columns = "";
