@@ -12,14 +12,11 @@ import javafx.scene.text.Text;
 import javafx.scene.control.*;
 
 import javafx.stage.Stage;
-import jdk.nashorn.internal.codegen.Label;
 
 public class Main extends Application {
-    public void start(Stage primaryStage) 
-    {
-        primaryStage.setTitle("Codecademy"); 
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Codecademy");
 
-       
         // Welcome text
         Label welcomeText = new Label("CodeCademy");
         welcomeText.setStyle("-fx-font-size:8em; ");
@@ -36,30 +33,33 @@ public class Main extends Application {
         certificates.setStyle("-fx-font-size: 2em; ");
         registrations.setStyle("-fx-font-size: 2em; ");
         hboxButtons.setAlignment(Pos.CENTER);
-        hboxButtons.setSpacing(25);        
+        hboxButtons.setSpacing(25);
 
         BorderPane layout = new BorderPane();
         layout.setAlignment(welcomeText, Pos.TOP_CENTER);
         layout.setTop(welcomeText);
         layout.setCenter(hboxButtons);
 
-        
-        
+        Scene sc = new Scene(layout, 960, 600, Color.GREY);
 
-        Scene sc = new Scene(layout, 960, 600, Color.GREY); 
-
-        primaryStage.setScene(sc); 
+        primaryStage.setScene(sc);
         primaryStage.setMaximized(true);
-        primaryStage.show(); 
+        primaryStage.show();
 
-
-        courses.setOnAction(new EventHandler<ActionEvent>(){
+        courses.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event2)
-            {
+            public void handle(ActionEvent e) {
                 CourseScene courseScene = new CourseScene();
-                courseScene.start(primaryStage); }                
-    }
+                Stage scene2 = new Stage();
+                try {
+                    courseScene.start(scene2);
+                    primaryStage.close();
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+            }
+        });}
 
     public static void main(String args[]) {
         launch(args);
