@@ -4,12 +4,12 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.control.*;
 
 import javafx.stage.Stage;
+
 
 public class Main extends Application { 
     public void start(Stage primaryStage) 
@@ -62,29 +62,26 @@ public class Main extends Application {
         menuBar.getMenus().add(modify); 
         menuBar.getMenus().add(overviews); 
 
-        // Welcome text (not in de application yet)
+        // Welcome text
         Text welcomeText = new Text("Welkom");
-        
-        // Buttons 
+
+        // Button
+        HBox hboxButtons = new HBox();
         Button courses = new Button("Cursussen");
         Button students = new Button("Cursisten");
         Button certificates = new Button("Certificaten");
         Button registrations = new Button("Registraties");
-  
-        HBox hboxButtons = new HBox();
-
-        hboxButtons.getChildren().add(courses);
-        hboxButtons.getChildren().add(students);
-        hboxButtons.getChildren().add(certificates);
-        hboxButtons.getChildren().add(registrations);
-        hboxButtons.setPadding(new Insets(200, 100, 200, 0));
-        hboxButtons.setSpacing(80.0);
+        hboxButtons.getChildren().addAll(courses, students, certificates, registrations);
+        hboxButtons.setPadding(new Insets(400, 300, 300, 720));
+        hboxButtons.setSpacing(25);
+        
 
         BorderPane layout = new BorderPane();
         layout.setTop(menuBar);
         layout.setCenter(hboxButtons);
+        
 
-        Scene sc = new Scene(layout, 960, 600); 
+        Scene sc = new Scene(layout, 960, 600, Color.GREY); 
 
         primaryStage.setScene(sc); 
         primaryStage.setMaximized(true);
