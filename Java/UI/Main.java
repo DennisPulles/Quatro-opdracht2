@@ -1,74 +1,67 @@
 package Java.UI;
 
-import javafx.application.Application; 
-import javafx.scene.Scene; 
-import javafx.scene.layout.*; 
-import javafx.scene.control.*; 
-import javafx.stage.Stage; 
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.control.*;
 
-public class Main extends Application { 
+import javafx.stage.Stage;
+import jdk.nashorn.internal.codegen.Label;
+
+public class Main extends Application {
     public void start(Stage primaryStage) 
-    { 
+    {
         primaryStage.setTitle("Codecademy"); 
-  
-        Menu data = new Menu("Data");
-        Menu nieuw = new Menu("Nieuw");
-        Menu wijzigen = new Menu("Wijzigen");
-        Menu rapporten = new Menu("Rapport");
 
-        // data
-        MenuItem cursussen = new MenuItem("Cursussen");
-        MenuItem cursisten = new MenuItem("Cursisten");
-        MenuItem modules = new MenuItem("Modules");
+       
+        // Welcome text
+        Label welcomeText = new Label("CodeCademy");
+        welcomeText.setStyle("-fx-font-size:8em; ");
+
+        // Button
+        HBox hboxButtons = new HBox();
+        Button courses = new Button("Cursussen");
+        Button students = new Button("Cursisten");
+        Button certificates = new Button("Certificaten");
+        Button registrations = new Button("Registraties");
+        hboxButtons.getChildren().addAll(courses, students, certificates, registrations);
+        courses.setStyle("-fx-font-size: 2em; ");
+        students.setStyle("-fx-font-size: 2em; ");
+        certificates.setStyle("-fx-font-size: 2em; ");
+        registrations.setStyle("-fx-font-size: 2em; ");
+        hboxButtons.setAlignment(Pos.CENTER);
+        hboxButtons.setSpacing(25);        
+
+        BorderPane layout = new BorderPane();
+        layout.setAlignment(welcomeText, Pos.TOP_CENTER);
+        layout.setTop(welcomeText);
+        layout.setCenter(hboxButtons);
+
         
-        //nieuw
-        MenuItem cursus = new MenuItem("Cursus");
-        MenuItem module = new MenuItem("Module");
-        MenuItem webcast = new MenuItem("Webcast");
+        
 
-        // rapporten
-        MenuItem overzicht1 = new MenuItem("Overzicht 1");
-        MenuItem overzicht2 = new MenuItem("Overzicht 2");
-        MenuItem overzicht3 = new MenuItem("Overzicht 3");
-        MenuItem overzicht4 = new MenuItem("Overzicht 4");
-        MenuItem overzicht5 = new MenuItem("Overzicht 5");
-        MenuItem overzicht6 = new MenuItem("Overzicht 6");
+        Scene sc = new Scene(layout, 960, 600, Color.GREY); 
 
-        data.getItems().add(cursussen); 
-        data.getItems().add(cursisten); 
-        data.getItems().add(modules); 
-        nieuw.getItems().add(cursus);
-        nieuw.getItems().add(module);
-        nieuw.getItems().add(webcast);
-        wijzigen.getItems().add(cursus);
-        wijzigen.getItems().add(module);
-        wijzigen.getItems().add(webcast);
-        rapporten.getItems().add(overzicht1);
-        rapporten.getItems().add(overzicht2);
-        rapporten.getItems().add(overzicht3);
-        rapporten.getItems().add(overzicht4);
-        rapporten.getItems().add(overzicht5);
-        rapporten.getItems().add(overzicht6);
-  
-        MenuBar menuBar = new MenuBar(); 
-  
-        menuBar.getMenus().add(data); 
-        menuBar.getMenus().add(nieuw); 
-        menuBar.getMenus().add(wijzigen); 
-        menuBar.getMenus().add(rapporten); 
-
-        VBox vb = new VBox(menuBar); 
-  
-        Scene sc = new Scene(vb, 960, 600); 
-  
         primaryStage.setScene(sc); 
         primaryStage.setMaximized(true);
         primaryStage.show(); 
-    } 
-  
-    public static void main(String args[]) 
-    { 
-        launch(args); 
-    } 
-} 
 
+
+        courses.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event2)
+            {
+                CourseScene courseScene = new CourseScene();
+                courseScene.start(primaryStage); }                
+    }
+
+    public static void main(String args[]) {
+        launch(args);
+    }
+}
