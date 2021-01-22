@@ -3,26 +3,26 @@ package Java.DB;
 public class WebcastSql {
     
     //Create
-    private String insertWebcastSql(String ID, String input[]){
+    public String insertWebcastSql(String ID, String input[]){
         return "INSERT INTO Webcast(ContentItemID, TimeSpan, SpeakerName, Orginisation, URL) VALUES ('" + ID + "', '" + input[0] + "', '" + input[1] + "', '" + input[2] + "', '" + input[3] + "', )";
     }
 
     //Read
-    private String selectWebcastSql(String ID){
+    public String selectWebcastSql(String ID){
         return "SELECT * FROM Webcast WHERE ContentItemID = '" + ID + "'";
     }
 
-    private String selectWebcastsSql(){
-        return "SELECT * from Webcast";
+    public String selectWebcastsSql(){
+        return "SELECT Title, TimeSpan, Discription, SpeakerName, Organisation, URL, AmountWatched FROM Webcast INNER JOIN ContentItem ON Webcast.ContentItemID = ContentItem.ContentItemID";
     }
 
     //Update
-    private String updateWebcastSql(String ID, String input[]){
+    public String updateWebcastSql(String ID, String input[]){
         return "UPDATE Webcast SET TimeSpan = '" + input[0] + "', SpeakerName ='" + input[1] + "', Orginisation, ='" + input[2] + "', URL ='" + input[3] + "' WHERE ContentItemID = '" + ID + "',";
     }
 
     //Delete
-    private String deleteWebcastSql(String ID){
+    public String deleteWebcastSql(String ID){
         return "DELETE FROM Webcast WHERE ContentItemID = '" + ID + "'";
     }
 }
