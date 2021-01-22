@@ -1,5 +1,8 @@
 package Java.UI;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,9 +11,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.control.*;
-
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -18,8 +26,19 @@ public class Main extends Application {
         primaryStage.setTitle("Codecademy");
 
         // Welcome text
-        Label welcomeText = new Label("CodeCademy");
-        welcomeText.setStyle("-fx-font-size:8em; ");
+        // Label welcomeText = new Label("CodeCademy");
+        // welcomeText.setStyle("-fx-font-size:8em; ");
+
+        // fonts    
+        String fontFamily  = "Arial";
+        Font font1 = Font.font(fontFamily);
+
+        // load the image
+        Image image = new Image("Img/logoTransparant.png");
+ 
+        // simple displays ImageView the image as is
+        ImageView banner = new ImageView();
+        banner.setImage(image);
 
         // Button
         HBox hboxButtons = new HBox();
@@ -28,24 +47,33 @@ public class Main extends Application {
         Button certificates = new Button("Certificaten");
         Button webcast = new Button("Webcast");
         hboxButtons.getChildren().addAll(courses, students, certificates, webcast);
-        courses.setStyle("-fx-font-size: 2em; ");
-        students.setStyle("-fx-font-size: 2em; ");
-        certificates.setStyle("-fx-font-size: 2em; ");
-        webcast.setStyle("-fx-font-size: 2em; ");
+        courses.setStyle("-fx-font-size: 2em; -fx-background-color: #8F8F8F;");
+        students.setStyle("-fx-font-size: 2em; -fx-background-color: #8F8F8F;");
+        certificates.setStyle("-fx-font-size: 2em; -fx-background-color: #8F8F8F;");
+        webcast.setStyle("-fx-font-size: 2em; -fx-background-color: #8F8F8F;");
         hboxButtons.setAlignment(Pos.CENTER);
         hboxButtons.setSpacing(25);
+        courses.setEffect(new DropShadow());
+        students.setEffect(new DropShadow());
+        certificates.setEffect(new DropShadow());
+        webcast.setEffect(new DropShadow());
 
         BorderPane layout = new BorderPane();
-        layout.setAlignment(welcomeText, Pos.TOP_CENTER);
-        layout.setTop(welcomeText);
+        
+        layout.setAlignment(banner, Pos.TOP_CENTER);
+        layout.setAlignment(hboxButtons, Pos.CENTER);
         layout.setCenter(hboxButtons);
+        layout.setTop(banner);
+        
+        
+        Scene sc = new Scene(layout, 960, 600);
 
-        Scene sc = new Scene(layout, 960, 600, Color.GREY);
-
+        layout.setStyle("-fx-background-color: #B4B4B4;");
         primaryStage.setScene(sc);
         primaryStage.setMaximized(true);
         primaryStage.show();
-// Button action for Course
+
+        // Button action for Course
         courses.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -109,6 +137,7 @@ certificates.setOnAction(new EventHandler<ActionEvent>() {
             e1.printStackTrace();
         }
     }
+    
 });
 
 

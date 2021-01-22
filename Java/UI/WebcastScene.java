@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -34,12 +35,12 @@ public class WebcastScene extends Application {
         // Table view all webcasts
         TableView tableViewAllWebcasts = new TableView();
         tableViewAllWebcasts.setColumnResizePolicy( TableView.CONSTRAINED_RESIZE_POLICY );
-        tableViewAllWebcasts.setPrefSize( 600, 400 );
+        tableViewAllWebcasts.setPrefSize( 600, 600 );
         
         // Make columns 
         TableColumn<Webcast, String> column1 = new TableColumn<>("Naam");
         column1.setCellValueFactory(new PropertyValueFactory<>("name"));
-        TableColumn<Webcast, Integer> column2 = new TableColumn<>("Aantal keren geluisterd");
+        TableColumn<Webcast, Integer> column2 = new TableColumn<>("Aantal keren bekijken");
         column2.setCellValueFactory(new PropertyValueFactory<>("timesPlayed"));
         TableColumn<Webcast, String> column3 = new TableColumn<>("Spreker");
         column3.setCellValueFactory(new PropertyValueFactory<>("speaker"));
@@ -86,7 +87,7 @@ public class WebcastScene extends Application {
         // Make columns 
         TableColumn<Webcast, String> column1Top3 = new TableColumn<>("Naam");
         column1Top3.setCellValueFactory(new PropertyValueFactory<>("name"));
-        TableColumn<Webcast, Integer> column2Top3 = new TableColumn<>("Aantal keren geluisterd");
+        TableColumn<Webcast, Integer> column2Top3 = new TableColumn<>("Aantal keren bekeken");
         column2Top3.setCellValueFactory(new PropertyValueFactory<>("timesPlayed"));
         TableColumn<Webcast, String> column3Top3 = new TableColumn<>("Spreker");
         column3Top3.setCellValueFactory(new PropertyValueFactory<>("speaker"));
@@ -103,7 +104,6 @@ public class WebcastScene extends Application {
         tableViewWebcastsTop3.getItems().add(new addWebcast("Guus", 30, "Guus", 45));
         tableViewWebcastsTop3.getItems().add(new addWebcast("Guus", 20, "Guus", 45));
         tableViewWebcastsTop3.getItems().add(new addWebcast("Guus", 10, "Guus", 45));
-
 
         VBox tableViewAllWebcastsVbox = new VBox();
         tableViewAllWebcastsVbox.getChildren().addAll(allWebcasts, tableViewAllWebcasts);
@@ -128,10 +128,13 @@ public class WebcastScene extends Application {
         
         Scene sc = new Scene(layout, 960, 600, Color.GREY);
 
+        layout.setStyle("-fx-background-color: #B4B4B4;");
         webcastStage.setScene(sc);
         webcastStage.setMaximized(true);
         webcastStage.show();
 
+        backButton.setStyle("-fx-font-size: 1em; -fx-background-color: #8F8F8F;");
+        backButton.setEffect(new DropShadow());
         backButton.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
