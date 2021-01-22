@@ -96,7 +96,7 @@ webcast.setOnAction(new EventHandler<ActionEvent>() {
 
 // Button action for Certificate
 
-webcast.setOnAction(new EventHandler<ActionEvent>() {
+certificates.setOnAction(new EventHandler<ActionEvent>() {
     @Override
     public void handle(ActionEvent e) {
         CertificateScene certificateScene = new CertificateScene();
