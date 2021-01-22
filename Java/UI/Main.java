@@ -77,9 +77,22 @@ students.setOnAction(new EventHandler<ActionEvent>() {
     }
 });
 
+// Button action for Webcast
 
-
-
+webcast.setOnAction(new EventHandler<ActionEvent>() {
+    @Override
+    public void handle(ActionEvent e) {
+        WebcastScene webcastScene = new WebcastScene();
+        Stage scene2 = new Stage();
+        try {
+            webcastScene.start(scene2);
+            primaryStage.close();
+        } catch (Exception e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+    }
+});
 
 
 
