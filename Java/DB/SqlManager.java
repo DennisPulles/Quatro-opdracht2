@@ -22,7 +22,7 @@ public class SqlManager {
     ResultSet rs = null;
 
     // executing the sql on the database with the allready created query
-    private ResultSet executeSql(String query){
+    public ResultSet executeSql(String query){
 
         try {
             // 'Import' the driver you downloaded
