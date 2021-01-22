@@ -45,7 +45,7 @@ public class Main extends Application {
         primaryStage.setScene(sc);
         primaryStage.setMaximized(true);
         primaryStage.show();
-
+// Button action for Course
         courses.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -59,7 +59,40 @@ public class Main extends Application {
                     e1.printStackTrace();
                 }
             }
-        });}
+        });
+
+// Button action for Students
+students.setOnAction(new EventHandler<ActionEvent>() {
+    @Override
+    public void handle(ActionEvent e) {
+        StudentsScene studentsScene = new StudentsScene();
+        Stage scene2 = new Stage();
+        try {
+            studentsScene.start(scene2);
+            primaryStage.close();
+        } catch (Exception e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
 
     public static void main(String args[]) {
         launch(args);
