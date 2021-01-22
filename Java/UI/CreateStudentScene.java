@@ -1,5 +1,7 @@
 package Java.UI;
 
+import java.time.LocalDate;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -7,6 +9,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
@@ -33,30 +37,81 @@ public class CreateStudentScene extends Application {
         welcomeText.setStyle("-fx-font-size:8em; ");
 
         GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
+        grid.setAlignment(Pos.TOP_CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
 
 
         Text scenetitle = new Text("Gegevens");
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
         grid.add(scenetitle, 0, 0, 2, 1);
 
-        Label userName = new Label("Voornaam");
-        grid.add(userName, 0, 1);
+        Label emailLabel = new Label("Email");
+        emailLabel.setStyle("-fx-font-size:2em; ");
+        grid.add(emailLabel, 0, 1);
 
-        TextField userTextField = new TextField();
-        grid.add(userTextField, 1, 1);
+        TextField userEmail = new TextField();
+        userEmail.setPrefColumnCount(10);
+        grid.add(userEmail, 1, 1);
 
-        Label pw = new Label("Achternaam");
-        grid.add(pw, 0, 2);
+        Label nameLabel = new Label("Voor & achternaam");
+        grid.add(nameLabel, 0, 2);
 
-        TextField userTextField2 = new TextField();
-        grid.add(userTextField2, 1, 2);
+        TextField userName = new TextField();
+        grid.add(userName, 1, 2);
+
+        Label houseNumber = new Label("Huisnummer");
+        grid.add(houseNumber, 0, 3);
+
+        TextField userHn = new TextField();
+        grid.add(userHn, 1, 3);
+
+        Label city = new Label("Stad");
+        grid.add(city, 0, 4);
+
+        TextField userCity = new TextField();
+        grid.add(userCity, 1, 4);
+
+        Label country = new Label("Stad");
+        grid.add(country, 0, 5);
+
+        TextField userCountry = new TextField();
+        grid.add(userCountry, 1, 5);
+
+        Label zipcode = new Label("Stad");
+        grid.add(zipcode, 0, 6);
+
+        TextField userZipcode = new TextField();
+        grid.add(userZipcode, 1, 6);
+
+        Label gender = new Label("Geslacht");
+        grid.add(gender, 0, 7);
+
+        final ComboBox userGender = new ComboBox();
+        userGender.setPromptText("      ");
+        userGender.getItems().addAll("Man", "Vrouw");
+        GridPane.setConstraints(userGender, 1, 7);
+        grid.getChildren().add(userGender);
+
+        Label birthDate = new Label("Geboorte datum");
+        grid.add(birthDate, 0, 8);
+
+        DatePicker datePicker = new DatePicker();
+        grid.add(datePicker, 1, 8);
+
+        Button button = new Button("Read Date");
+
+        button.setOnAction(action -> {
+            LocalDate value = datePicker.getValue();
+        });
+
+
+
+
+
         HBox hbox1 = new HBox();
         hbox1.getChildren().addAll(grid);
         hbox1.setAlignment(Pos.CENTER);
-
         Button backButton = new Button("Terug");
         HBox hbox2 = new HBox();
         hbox2.getChildren().addAll(backButton);

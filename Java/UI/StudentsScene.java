@@ -14,6 +14,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class StudentsScene extends Application {
@@ -22,7 +24,7 @@ public class StudentsScene extends Application {
     public void start(Stage studentStage) throws Exception {
         studentStage.setTitle("Codecademy");
 
-        Label welcomeText = new Label("Curssisten");
+        Label welcomeText = new Label("Cursisten");
         welcomeText.setStyle("-fx-font-size:8em; ");
         Button backButton = new Button("Terug");
 
@@ -46,12 +48,14 @@ ProgressIndicator pi2 = new ProgressIndicator(0.6);
 HBox progresBar1 = new HBox();
 progresBar1.getChildren().addAll(pb, pi);
 Label male = new Label("Slaagpercentage mannen");
+male.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
 VBox prog1 = new VBox();
 prog1.getChildren().addAll(male, progresBar1);
 
 HBox progresBar2 = new HBox();
 progresBar2.getChildren().addAll(pb2, pi2);
 Label female = new Label("Slaagpercentage vrouwen");
+female.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
 VBox prog2 = new VBox(female, progresBar2);
 
 Button create = new Button("Aanmaken");
