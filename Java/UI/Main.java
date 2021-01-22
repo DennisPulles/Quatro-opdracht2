@@ -94,6 +94,26 @@ webcast.setOnAction(new EventHandler<ActionEvent>() {
     }
 });
 
+// Button action for Certificate
+
+webcast.setOnAction(new EventHandler<ActionEvent>() {
+    @Override
+    public void handle(ActionEvent e) {
+        CertificateScene certificateScene = new CertificateScene();
+        Stage scene2 = new Stage();
+        try {
+            certificateScene.start(scene2);
+            primaryStage.close();
+        } catch (Exception e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+    }
+});
+
+
+
+
 
 
 
