@@ -26,12 +26,12 @@ public class Main extends Application {
         Button courses = new Button("Cursussen");
         Button students = new Button("Cursisten");
         Button certificates = new Button("Certificaten");
-        Button registrations = new Button("Registraties");
-        hboxButtons.getChildren().addAll(courses, students, certificates, registrations);
+        Button webcast = new Button("Webcast");
+        hboxButtons.getChildren().addAll(courses, students, certificates, webcast);
         courses.setStyle("-fx-font-size: 2em; ");
         students.setStyle("-fx-font-size: 2em; ");
         certificates.setStyle("-fx-font-size: 2em; ");
-        registrations.setStyle("-fx-font-size: 2em; ");
+        webcast.setStyle("-fx-font-size: 2em; ");
         hboxButtons.setAlignment(Pos.CENTER);
         hboxButtons.setSpacing(25);
 
