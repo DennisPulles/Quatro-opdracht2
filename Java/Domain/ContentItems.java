@@ -11,13 +11,11 @@ public class ContentItems {
  
     } 
     public int getProgression(String studentEmail){ 
-        for ( String key : progression.keySet() ) 
-        { 
-           if(progression.get(key).equals(studentEmail)){ 
-           return progression.get(key); 
-        } 
-    } 
+        for ( String key : progression.keySet() ){ 
+            if(progression.get(key).equals(studentEmail)){ 
+                return progression.get(key); 
+            } 
+        }  
         return 0; 
-         
     } 
 } 
