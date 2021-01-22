@@ -1,5 +1,6 @@
 package Java.UI;
 
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +15,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 
 public class CreateCourseScene extends Application {
 
@@ -50,6 +53,11 @@ public class CreateCourseScene extends Application {
         GridPane.setConstraints(courseDifficultyLabel, 0, 3);
         grid.getChildren().add(courseDifficultyLabel);
 
+        Label courseModuleLabel = new Label("Cursus module(s): ");
+        courseModuleLabel.setStyle("-fx-font-size:2em; ");
+        GridPane.setConstraints(courseModuleLabel, 0, 4);
+        grid.getChildren().add(courseModuleLabel);
+
         // Defining the Name text field
         final TextField courseName = new TextField();
         courseName.setPromptText("Voer naam van cursus in.");
@@ -65,11 +73,11 @@ public class CreateCourseScene extends Application {
         grid.getChildren().add(courseSubject);
 
         // Defining the intro text field
-        final TextArea introductoryText = new TextArea();
-        introductoryText.setPrefColumnCount(40);
-        introductoryText.setPromptText("Voer inleiding in.");
-        GridPane.setConstraints(introductoryText, 1, 2);
-        grid.getChildren().add(introductoryText);
+        final TextArea courseIntroductoryText = new TextArea();
+        courseIntroductoryText.setPrefColumnCount(40);
+        courseIntroductoryText.setPromptText("Voer inleiding in.");
+        GridPane.setConstraints(courseIntroductoryText, 1, 2);
+        grid.getChildren().add(courseIntroductoryText);
 
         // Defining the difficulty text field
         final ComboBox courseDifficulty = new ComboBox();
@@ -77,6 +85,28 @@ public class CreateCourseScene extends Application {
         courseDifficulty.getItems().addAll("Beginner", "Gevorderd", "Expert");
         GridPane.setConstraints(courseDifficulty, 1, 3);
         grid.getChildren().add(courseDifficulty);
+
+        // Defining the module
+        CheckBox checkBoxModule1 = new CheckBox("eerste module");
+        CheckBox checkBoxModule2 = new CheckBox("tweede module");
+        CheckBox checkBoxModule3 = new CheckBox("derde module");
+        CheckBox checkBoxModule4 = new CheckBox("vierde module");
+        CheckBox checkBoxModule5 = new CheckBox("vijfde module");
+        ArrayList<CheckBox> arrayListModule = new ArrayList<>();
+        arrayListModule.add(checkBoxModule1);
+        arrayListModule.add(checkBoxModule2);
+        arrayListModule.add(checkBoxModule3);
+        arrayListModule.add(checkBoxModule4);
+        arrayListModule.add(checkBoxModule5);
+
+        ListView courseListModule = new ListView();
+        courseListModule.getItems().add(checkBoxModule1);
+        courseListModule.getItems().add(checkBoxModule2);
+        courseListModule.getItems().add(checkBoxModule3);
+        courseListModule.getItems().add(checkBoxModule4);
+        courseListModule.getItems().add(checkBoxModule5);
+        GridPane.setConstraints(courseListModule, 1, 4);
+        grid.getChildren().add(courseListModule);
 
         // Defining the Submit button
         Button submit = new Button("Aanmaken");
@@ -92,7 +122,8 @@ public class CreateCourseScene extends Application {
 
         // Adding a Label to display a response
         final Label label = new Label();
-        GridPane.setConstraints(label, 1, 4);
+        label.setStyle("-fx-font-size: 2em; ");
+        GridPane.setConstraints(label, 1, 5);
         GridPane.setColumnSpan(label, 2);
         grid.getChildren().add(label);
 
@@ -145,22 +176,32 @@ public class CreateCourseScene extends Application {
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                if ((introductoryText.getText() != null && !introductoryText.getText().isEmpty())
+                Boolean isTrue = false;
+                for (CheckBox i : arrayListModule) {
+                    if (i.isSelected()) {
+                        isTrue = true;
+                    }
+                }
+                if ((courseIntroductoryText.getText() != null && !courseIntroductoryText.getText().isEmpty())
                         && (courseName.getText() != null && !courseName.getText().isEmpty())
                         && (courseSubject.getText() != null && !courseSubject.getText().isEmpty())
-                        && (courseDifficulty.getValue() != null)) {
+                        && (courseDifficulty.getValue() != null) && isTrue) {
                     label.setText("Cursus, " + courseName.getText() + ", is aangemaakt.");
                 } else {
+                    if (!isTrue) {
+                        label.setText("U heeft geen modules voor de cursus geselecteerd, probeer opnieuw.");
+                    }
+
                     if (courseDifficulty.getValue() == null) {
                         label.setText("U heeft geen niveau voor de cursus ingevoerd, probeer opnieuw.");
                     }
 
-                    if (introductoryText.getText().isEmpty()) {
+                    if (courseIntroductoryText.getText().isEmpty()) {
                         label.setText("U heeft geen inleiding voor de cursus ingevoerd, probeer opnieuw.");
                     }
 
                     if (courseSubject.getText().isEmpty()) {
-                        label.setText("U heeft geen Onderwerp voor de cursus ingevoerd, probeer opnieuw.");
+                        label.setText("U heeft geen onderwerp voor de cursus ingevoerd, probeer opnieuw.");
                     }
 
                     if (courseName.getText().isEmpty()) {
@@ -177,8 +218,13 @@ public class CreateCourseScene extends Application {
             public void handle(ActionEvent e) {
                 courseName.clear();
                 courseSubject.clear();
-                introductoryText.clear();
+                courseIntroductoryText.clear();
                 label.setText(null);
+                courseDifficulty.setValue(null);
+                courseDifficulty.setPromptText("Niveau");
+                for (CheckBox i : arrayListModule) {
+                    i.setSelected(false);
+                }
             }
         });
     }
