@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package Java.Domain; 
 
 import java.sql.ResultSet;
@@ -30,3 +31,20 @@ public class Webcast extends ContentItems{
         this.amountWatched = amountWatched;
     } 
 } 
+=======
+package Java.Domain;
+
+public class Webcast extends ContentItems{
+    private String tile;
+    private int timeSpan;
+    private String description;
+    private String speakerName;
+    private String speakerCompany;
+    private String url;
+    private int amountWatched;
+
+    public Webcast(){
+        
+    }
+}
+>>>>>>> Stashed changes
