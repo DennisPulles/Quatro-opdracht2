@@ -138,7 +138,7 @@ public class CreateStudentScene extends Application {
                     if (datePicker.getValue() == null) {
                         label.setText("U heeft geen geboorte datum gekozen, probeer opnieuw.");
                     }
-                    if (userGender.getPromptText() == "      ") {
+                    if (userGender.getValue() == null) {
                         label.setText("U heeft geen geslacht gekozen, probeer opnieuw.");
                     }
                     if (userZipcode.getText().isEmpty()) {
