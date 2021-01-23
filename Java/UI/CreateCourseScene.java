@@ -1,6 +1,8 @@
 package Java.UI;
 
 import java.util.ArrayList;
+
+import Java.Domain.Course;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +16,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.DropShadow;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,8 +25,8 @@ import javafx.scene.Parent;
 public class CreateCourseScene extends Application {
 
     @Override
-    public void start(Stage creatCourseStage) throws Exception {
-        creatCourseStage.setTitle("Codecademy");
+    public void start(Stage createCourseStage) throws Exception {
+        createCourseStage.setTitle("Codecademy");
         Label welcomeText = new Label("Cursus aanmaken");
         welcomeText.setStyle("-fx-font-size:8em; ");
 
@@ -87,37 +91,59 @@ public class CreateCourseScene extends Application {
         grid.getChildren().add(courseDifficulty);
 
         // Defining the module
-        CheckBox checkBoxModule1 = new CheckBox("eerste module");
-        CheckBox checkBoxModule2 = new CheckBox("tweede module");
-        CheckBox checkBoxModule3 = new CheckBox("derde module");
-        CheckBox checkBoxModule4 = new CheckBox("vierde module");
-        CheckBox checkBoxModule5 = new CheckBox("vijfde module");
+        TableView courseListModule = new TableView();
+        courseListModule.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        courseListModule.setPrefSize(600, 600);
+
+        CheckBox checkBoxModule1 = new CheckBox("checkbox 1");
+        CheckBox checkBoxModule3 = new CheckBox("checkbox 2");
+        CheckBox checkBoxModule4 = new CheckBox("checkbox 3");
+        CheckBox checkBoxModule5 = new CheckBox("checkbox 4");
+        CheckBox checkBoxModule2 = new CheckBox("checkbox 5");
+
         ArrayList<CheckBox> arrayListModule = new ArrayList<>();
         arrayListModule.add(checkBoxModule1);
         arrayListModule.add(checkBoxModule2);
         arrayListModule.add(checkBoxModule3);
         arrayListModule.add(checkBoxModule4);
         arrayListModule.add(checkBoxModule5);
+        
+        // Make columns 
+        TableColumn<Course, CheckBox> column1 = new TableColumn<>("Toevoegen");
+        column1.setCellValueFactory(new PropertyValueFactory<>("add"));
+        TableColumn<Course, String> column2 = new TableColumn<>("Titel");
+        column2.setCellValueFactory(new PropertyValueFactory<>("title"));
+        TableColumn<Course, String> column3 = new TableColumn<>("Versie");
+        column3.setCellValueFactory(new PropertyValueFactory<>("version"));
+        TableColumn<Course, String> column4 = new TableColumn<>("Beschrijving");
+        column4.setCellValueFactory(new PropertyValueFactory<>("description"));
+        TableColumn<Course, String> column5 = new TableColumn<>("Naam van contactpersoon");
+        column5.setCellValueFactory(new PropertyValueFactory<>("nameOfContact"));
 
-        ListView courseListModule = new ListView();
-        courseListModule.getItems().add(checkBoxModule1);
-        courseListModule.getItems().add(checkBoxModule2);
-        courseListModule.getItems().add(checkBoxModule3);
-        courseListModule.getItems().add(checkBoxModule4);
-        courseListModule.getItems().add(checkBoxModule5);
+        // Add columns to table
+        courseListModule.getColumns().add(column1);
+        courseListModule.getColumns().add(column2);
+        courseListModule.getColumns().add(column3);
+        courseListModule.getColumns().add(column4);
+        courseListModule.getColumns().add(column5);
+
+        courseListModule.getItems().add(new addCourse(checkBoxModule1, "Elements and Structure", "1.14.3", "Learn about HTML elements and structure, the building blocks of websites.", "Harley Bray"));
+        courseListModule.getItems().add(new addCourse(checkBoxModule2, "Tables", "1.16.3", "Learn all the syntax you need to create tables in your HTML documents.", "Alice Edwards"));
+
+
         GridPane.setConstraints(courseListModule, 1, 4);
         grid.getChildren().add(courseListModule);
 
         // Defining the Submit button
         Button submit = new Button("Aanmaken");
-        submit.setStyle("-fx-background-color: #1da06a");
+        submit.setStyle("-fx-font-size: 2em; -fx-background-color: #1da06a");
         GridPane.setConstraints(submit, 2, 0);
         grid.getChildren().add(submit);
 
         // Defining the Clear button
         Button clear = new Button("Leeg maken");
-        clear.setStyle("-fx-background-color: #ff6633");
-        GridPane.setConstraints(clear, 2, 1);
+        clear.setStyle("-fx-font-size: 2em; -fx-background-color: #f2a81d");
+        GridPane.setConstraints(clear, 3, 0);
         grid.getChildren().add(clear);
 
         // Adding a Label to display a response
@@ -134,8 +160,10 @@ public class CreateCourseScene extends Application {
 
         // Create a back button
         Button backButton = new Button("Terug");
-        backButton.setStyle("-fx-font-size: 2em; ");
-        backButton.setLineSpacing(25);
+        backButton.setStyle("-fx-font-size: 2em; -fx-background-color: #8F8F8F;");
+        // backButton.setLineSpacing(25);
+        backButton.setEffect(new DropShadow());
+        
 
         // Putting the backbutton inside hbox2
         HBox hbox2 = new HBox();
@@ -153,9 +181,10 @@ public class CreateCourseScene extends Application {
         // Start scene
         Scene sc = new Scene(layout, 960, 600, Color.GREY);
 
-        creatCourseStage.setScene(sc);
-        creatCourseStage.setMaximized(true);
-        creatCourseStage.show();
+        layout.setStyle("-fx-background-color: #d6d6d6;");
+        createCourseStage.setScene(sc);
+        createCourseStage.setMaximized(true);
+        createCourseStage.show();
 
         // Back Button Action
         backButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -165,7 +194,7 @@ public class CreateCourseScene extends Application {
                 Stage scene2 = new Stage();
                 try {
                     courseScene.start(scene2);
-                    creatCourseStage.close();
+                    createCourseStage.close();
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }

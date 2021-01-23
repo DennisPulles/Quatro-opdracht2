@@ -29,13 +29,13 @@ public class Main extends Application {
         // Label welcomeText = new Label("CodeCademy");
         // welcomeText.setStyle("-fx-font-size:8em; ");
 
-        // fonts    
-        String fontFamily  = "Arial";
+        // fonts
+        String fontFamily = "Arial";
         Font font1 = Font.font(fontFamily);
 
         // load the image
         Image image = new Image("Img/logoTransparant.png");
- 
+
         // simple displays ImageView the image as is
         ImageView banner = new ImageView();
         banner.setImage(image);
@@ -53,22 +53,18 @@ public class Main extends Application {
         webcast.setStyle("-fx-font-size: 2em; -fx-background-color: #8F8F8F;");
         hboxButtons.setAlignment(Pos.CENTER);
         hboxButtons.setSpacing(25);
-        courses.setEffect(new DropShadow());
-        students.setEffect(new DropShadow());
-        certificates.setEffect(new DropShadow());
-        webcast.setEffect(new DropShadow());
+        hboxButtons.setEffect(new DropShadow());
 
         BorderPane layout = new BorderPane();
-        
+
         layout.setAlignment(banner, Pos.TOP_CENTER);
         layout.setAlignment(hboxButtons, Pos.CENTER);
         layout.setCenter(hboxButtons);
         layout.setTop(banner);
-        
-        
+
         Scene sc = new Scene(layout, 960, 600);
 
-        layout.setStyle("-fx-background-color: #B4B4B4;");
+        layout.setStyle("-fx-background-color: #d6d6d6;");
         primaryStage.setScene(sc);
         primaryStage.setMaximized(true);
         primaryStage.show();
@@ -89,72 +85,55 @@ public class Main extends Application {
             }
         });
 
-// Button action for Students
-students.setOnAction(new EventHandler<ActionEvent>() {
-    @Override
-    public void handle(ActionEvent e) {
-        StudentsScene studentsScene = new StudentsScene();
-        Stage scene2 = new Stage();
-        try {
-            studentsScene.start(scene2);
-            primaryStage.close();
-        } catch (Exception e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
+        // Button action for Students
+        students.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                StudentsScene studentsScene = new StudentsScene();
+                Stage scene2 = new Stage();
+                try {
+                    studentsScene.start(scene2);
+                    primaryStage.close();
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+        // Button action for Webcast
+        webcast.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                WebcastScene webcastScene = new WebcastScene();
+                Stage scene2 = new Stage();
+                try {
+                    webcastScene.start(scene2);
+                    primaryStage.close();
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+        // Button action for Certificate
+        certificates.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                CertificateScene certificateScene = new CertificateScene();
+                Stage scene2 = new Stage();
+                try {
+                    certificateScene.start(scene2);
+                    primaryStage.close();
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+            }
+
+        });
     }
-});
-
-// Button action for Webcast
-
-webcast.setOnAction(new EventHandler<ActionEvent>() {
-    @Override
-    public void handle(ActionEvent e) {
-        WebcastScene webcastScene = new WebcastScene();
-        Stage scene2 = new Stage();
-        try {
-            webcastScene.start(scene2);
-            primaryStage.close();
-        } catch (Exception e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-    }
-});
-
-// Button action for Certificate
-
-certificates.setOnAction(new EventHandler<ActionEvent>() {
-    @Override
-    public void handle(ActionEvent e) {
-        CertificateScene certificateScene = new CertificateScene();
-        Stage scene2 = new Stage();
-        try {
-            certificateScene.start(scene2);
-            primaryStage.close();
-        } catch (Exception e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-    }
-    
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
-
 
     public static void main(String args[]) {
         launch(args);
