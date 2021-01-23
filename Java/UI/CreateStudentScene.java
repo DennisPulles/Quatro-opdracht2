@@ -109,8 +109,89 @@ public class CreateStudentScene extends Application {
         Button button = new Button("Read Date");
 
         button.setOnAction(action -> {
-            LocalDate value = datePicker.getValue();
+            LocalDate userDate = datePicker.getValue();
         });
+        final Label label = new Label();
+        label.setStyle("-fx-font-size: 2em; ");
+        GridPane.setConstraints(label, 1, 9);
+        GridPane.setColumnSpan(label, 2);
+        grid.getChildren().add(label);
+
+                // Defining the Submit button
+                Button submit = new Button("Aanmaken");
+                submit.setStyle("-fx-font-size: 2em; -fx-background-color: #1da06a");
+                GridPane.setConstraints(submit, 2, 1);
+                grid.getChildren().add(submit);
+
+                 // Setting an action for the Submit button
+        submit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                
+                if ((userEmail.getText() != null && !userName.getText().isEmpty())
+                        && (userHn.getText() != null && !userCity.getText().isEmpty())
+                        && (userCountry.getText() != null && !userZipcode.getText().isEmpty())
+                        && (datePicker.getValue() != null) && (userGender.getValue() != null)) {
+                    label.setText("Cursist " + userName.getText() + " is aangemaakt.");
+                } else {
+
+                    if (datePicker.getValue() == null) {
+                        label.setText("U heeft geen geboorte datum gekozen, probeer opnieuw.");
+                    }
+                    if (userGender.getPromptText() == "      ") {
+                        label.setText("U heeft geen geslacht gekozen, probeer opnieuw.");
+                    }
+                    if (userZipcode.getText().isEmpty()) {
+                        label.setText("U heeft geen postcode ingevoerd, probeer opnieuw.");
+                    }
+                    if (userCountry.getText().isEmpty()) {
+                        label.setText("U heeft geen land ingevoerd, probeer opnieuw.");
+                    }
+                    if (userCity.getText().isEmpty()) {
+                        label.setText("U heeft geen stad ingevoerd, probeer opnieuw.");
+                    }
+                    if (userHn.getText().isEmpty()) {
+                        label.setText("U heeft geen huisnummer ingevoerd, probeer opnieuw.");
+                    }
+                    if (userName.getText().isEmpty()) {
+                        label.setText("U heeft geen naam ingevoerd, probeer opnieuw.");
+                    }
+                    if (userEmail.getText().isEmpty()) {
+                        label.setText("U heeft geen email ingevoerd, probeer opnieuw.");
+                    }
+
+
+
+
+
+                }
+            }
+        });
+        
+                // Defining the Clear button
+                Button clear = new Button("Leeg maken");
+                clear.setStyle("-fx-font-size: 2em; -fx-background-color: #f2a81d");
+                GridPane.setConstraints(clear, 2, 2);
+                grid.getChildren().add(clear);
+
+                 // Setting an action for the Clear button
+        clear.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent e) {
+                userEmail.clear();
+                userName.clear();
+                userHn.clear();
+                userCity.clear();
+                userCountry.clear();
+                userZipcode.clear();
+                userGender.setValue(null);
+                userGender.setPromptText("Geslacht");
+                datePicker.setValue(null);
+            }
+        });
+
+
 
         HBox hbox1 = new HBox();
         hbox1.getChildren().addAll(grid);
