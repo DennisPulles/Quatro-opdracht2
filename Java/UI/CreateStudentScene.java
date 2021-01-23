@@ -75,14 +75,14 @@ public class CreateStudentScene extends Application {
         TextField userCity = new TextField();
         grid.add(userCity, 1, 4);
 
-        Label country = new Label("Stad");
+        Label country = new Label("Land");
         country.setStyle("-fx-font-size:2em; ");
         grid.add(country, 0, 5);
 
         TextField userCountry = new TextField();
         grid.add(userCountry, 1, 5);
 
-        Label zipcode = new Label("Stad");
+        Label zipcode = new Label("Postcode");
         zipcode.setStyle("-fx-font-size:2em; ");
         grid.add(zipcode, 0, 6);
 
