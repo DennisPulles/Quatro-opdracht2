@@ -16,6 +16,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.stage.Stage;
@@ -95,11 +96,11 @@ public class CreateCourseScene extends Application {
         courseListModule.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         courseListModule.setPrefSize(600, 600);
 
-        CheckBox checkBoxModule1 = new CheckBox("checkbox 1");
-        CheckBox checkBoxModule3 = new CheckBox("checkbox 2");
-        CheckBox checkBoxModule4 = new CheckBox("checkbox 3");
-        CheckBox checkBoxModule5 = new CheckBox("checkbox 4");
-        CheckBox checkBoxModule2 = new CheckBox("checkbox 5");
+        CheckBox checkBoxModule1 = new CheckBox();
+        CheckBox checkBoxModule2 = new CheckBox();
+        CheckBox checkBoxModule3 = new CheckBox();
+        CheckBox checkBoxModule4 = new CheckBox();
+        CheckBox checkBoxModule5 = new CheckBox();
 
         ArrayList<CheckBox> arrayListModule = new ArrayList<>();
         arrayListModule.add(checkBoxModule1);
@@ -107,10 +108,10 @@ public class CreateCourseScene extends Application {
         arrayListModule.add(checkBoxModule3);
         arrayListModule.add(checkBoxModule4);
         arrayListModule.add(checkBoxModule5);
-        
-        // Make columns 
+
+        // Make columns
         TableColumn<Course, CheckBox> column1 = new TableColumn<>("Toevoegen");
-        column1.setCellValueFactory(new PropertyValueFactory<>("add"));
+        column1.setCellValueFactory(new PropertyValueFactory<>("checkBox"));
         TableColumn<Course, String> column2 = new TableColumn<>("Titel");
         column2.setCellValueFactory(new PropertyValueFactory<>("title"));
         TableColumn<Course, String> column3 = new TableColumn<>("Versie");
@@ -127,9 +128,10 @@ public class CreateCourseScene extends Application {
         courseListModule.getColumns().add(column4);
         courseListModule.getColumns().add(column5);
 
-        courseListModule.getItems().add(new addCourse(checkBoxModule1, "Elements and Structure", "1.14.3", "Learn about HTML elements and structure, the building blocks of websites.", "Harley Bray"));
-        courseListModule.getItems().add(new addCourse(checkBoxModule2, "Tables", "1.16.3", "Learn all the syntax you need to create tables in your HTML documents.", "Alice Edwards"));
-
+        courseListModule.getItems().add(new addCourse(checkBoxModule1, "Elements and Structure", "1.14.3",
+                "Learn about HTML elements and structure, the building blocks of websites.", "Harley Bray"));
+        courseListModule.getItems().add(new addCourse(checkBoxModule2, "Tables", "1.16.3",
+                "Learn all the syntax you need to create tables in your HTML documents.", "Alice Edwards"));
 
         GridPane.setConstraints(courseListModule, 1, 4);
         grid.getChildren().add(courseListModule);
@@ -143,7 +145,7 @@ public class CreateCourseScene extends Application {
         // Defining the Clear button
         Button clear = new Button("Leeg maken");
         clear.setStyle("-fx-font-size: 2em; -fx-background-color: #f2a81d");
-        GridPane.setConstraints(clear, 3, 0);
+        GridPane.setConstraints(clear, 2, 1);
         grid.getChildren().add(clear);
 
         // Adding a Label to display a response
@@ -163,7 +165,6 @@ public class CreateCourseScene extends Application {
         backButton.setStyle("-fx-font-size: 2em; -fx-background-color: #8F8F8F;");
         // backButton.setLineSpacing(25);
         backButton.setEffect(new DropShadow());
-        
 
         // Putting the backbutton inside hbox2
         HBox hbox2 = new HBox();

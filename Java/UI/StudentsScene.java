@@ -38,6 +38,7 @@ public class StudentsScene extends Application {
         listView.getItems().add("Item 2");
         listView.getItems().add("Item 3");
 
+
 VBox vboxView = new VBox();
 VBox vbox2 = new VBox();
 
@@ -83,7 +84,7 @@ hbox.setAlignment(Pos.CENTER);
         layout.setAlignment(backButton, Pos.BOTTOM_LEFT);
         layout.setBottom(backButton);
         layout.setCenter(hbox);
-        layout.setStyle("-fx-background-color: #B4B4B4;");
+        layout.setStyle("-fx-background-color: #d6d6d6;");
 
         Scene sc = new Scene(layout, 960, 600, Color.BEIGE);
 

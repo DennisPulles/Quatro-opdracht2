@@ -42,7 +42,6 @@ public class CreateStudentScene extends Application {
         grid.setHgap(10);
         grid.setVgap(10);
 
-
         Text scenetitle = new Text("Gegevens");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
         grid.add(scenetitle, 0, 0, 2, 1);
@@ -52,7 +51,7 @@ public class CreateStudentScene extends Application {
         grid.add(emailLabel, 0, 1);
 
         TextField userEmail = new TextField();
-        userEmail.setPrefColumnCount(10);
+        userEmail.setPrefColumnCount(40);
         grid.add(userEmail, 1, 1);
 
         Label nameLabel = new Label("Voor & achternaam");
@@ -113,12 +112,6 @@ public class CreateStudentScene extends Application {
             LocalDate value = datePicker.getValue();
         });
 
-        
-
-
-
-
-
         HBox hbox1 = new HBox();
         hbox1.getChildren().addAll(grid);
         hbox1.setAlignment(Pos.CENTER);
@@ -135,12 +128,8 @@ public class CreateStudentScene extends Application {
         layout.setCenter(hbox1);
         layout.setAlignment(welcomeText, Pos.TOP_CENTER);
         layout.setTop(welcomeText);
-        layout.setStyle("-fx-background-color: #B4B4B4;");
+        layout.setStyle("-fx-background-color: #d6d6d6;");
         
-        
-       
-        
-
         Scene sc = new Scene(layout, 960, 600, Color.BEIGE);
 
         createStage.setScene(sc);
