@@ -1,5 +1,10 @@
 package Java.UI;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.jar.Attributes.Name;
+
+import Java.Domain.Student;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,6 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -33,10 +39,26 @@ public class StudentsScene extends Application {
 
         // Lsit view
         ListView listView = new ListView();
+        String str = "2020-03-31";
+        Date date = Date.valueOf(str);
 
-        listView.getItems().add("Item 1");
-        listView.getItems().add("Item 2");
-        listView.getItems().add("Item 3");
+
+    Student studentEmail = new Student("a","a",date,"a","a","a","a","a");
+    studentEmail.getStudentResult();
+    ArrayList<Student> list = studentEmail.getStudentEmail();
+        
+        for (Student x: list){
+            listView.getItems().add(x);
+        }
+        
+
+        listView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("clicked on " + listView.getSelectionModel().getSelectedItem());
+            }
+        });
 
 
 VBox vboxView = new VBox();

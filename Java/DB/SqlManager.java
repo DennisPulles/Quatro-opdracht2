@@ -10,7 +10,7 @@ public class SqlManager {
     
     //IMPORTANT CONNECTION INFO
 
-    private String connectionUrl = "jdbc:sqlserver://localhost;databaseName=Quatro;integratedSecurity=true;";
+    String connectionUrl = "jdbc:sqlserver://localhost;databaseName=Quatro;integratedSecurity=true;";
 
     // Connection manages information about the connection with the database.
     Connection con = null;
@@ -25,7 +25,7 @@ public class SqlManager {
     public ResultSet executeSql(String query){
 
         try {
-            // 'Import' the driver you downloaded
+            // 'Importeer' de driver die je gedownload hebt.
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             // Create connection with the database.
             con = DriverManager.getConnection(connectionUrl);
