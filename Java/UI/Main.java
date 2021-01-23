@@ -47,10 +47,10 @@ public class Main extends Application {
         Button certificates = new Button("Certificaten");
         Button webcast = new Button("Webcast");
         hboxButtons.getChildren().addAll(courses, students, certificates, webcast);
-        courses.setStyle("-fx-font-size: 2em; -fx-background-color: #8F8F8F;");
-        students.setStyle("-fx-font-size: 2em; -fx-background-color: #8F8F8F;");
-        certificates.setStyle("-fx-font-size: 2em; -fx-background-color: #8F8F8F;");
-        webcast.setStyle("-fx-font-size: 2em; -fx-background-color: #8F8F8F;");
+        courses.setStyle("-fx-font-size: 2em; -fx-background-color: #c4c4c4;");
+        students.setStyle("-fx-font-size: 2em; -fx-background-color: #c4c4c4;");
+        certificates.setStyle("-fx-font-size: 2em; -fx-background-color: #c4c4c4;");
+        webcast.setStyle("-fx-font-size: 2em; -fx-background-color: #c4c4c4;");
         hboxButtons.setAlignment(Pos.CENTER);
         hboxButtons.setSpacing(25);
         hboxButtons.setEffect(new DropShadow());
