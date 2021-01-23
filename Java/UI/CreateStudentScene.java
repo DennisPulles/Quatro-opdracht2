@@ -17,6 +17,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -55,36 +56,42 @@ public class CreateStudentScene extends Application {
         grid.add(userEmail, 1, 1);
 
         Label nameLabel = new Label("Voor & achternaam");
+        nameLabel.setStyle("-fx-font-size:2em; ");
         grid.add(nameLabel, 0, 2);
 
         TextField userName = new TextField();
         grid.add(userName, 1, 2);
 
         Label houseNumber = new Label("Huisnummer");
+        houseNumber.setStyle("-fx-font-size:2em; ");
         grid.add(houseNumber, 0, 3);
 
         TextField userHn = new TextField();
         grid.add(userHn, 1, 3);
 
         Label city = new Label("Stad");
+        city.setStyle("-fx-font-size:2em; ");
         grid.add(city, 0, 4);
 
         TextField userCity = new TextField();
         grid.add(userCity, 1, 4);
 
         Label country = new Label("Stad");
+        country.setStyle("-fx-font-size:2em; ");
         grid.add(country, 0, 5);
 
         TextField userCountry = new TextField();
         grid.add(userCountry, 1, 5);
 
         Label zipcode = new Label("Stad");
+        zipcode.setStyle("-fx-font-size:2em; ");
         grid.add(zipcode, 0, 6);
 
         TextField userZipcode = new TextField();
         grid.add(userZipcode, 1, 6);
 
         Label gender = new Label("Geslacht");
+        gender.setStyle("-fx-font-size:2em; ");
         grid.add(gender, 0, 7);
 
         final ComboBox userGender = new ComboBox();
@@ -94,6 +101,7 @@ public class CreateStudentScene extends Application {
         grid.getChildren().add(userGender);
 
         Label birthDate = new Label("Geboorte datum");
+        birthDate.setStyle("-fx-font-size:2em; ");
         grid.add(birthDate, 0, 8);
 
         DatePicker datePicker = new DatePicker();
@@ -115,6 +123,9 @@ public class CreateStudentScene extends Application {
         hbox1.getChildren().addAll(grid);
         hbox1.setAlignment(Pos.CENTER);
         Button backButton = new Button("Terug");
+        backButton.setStyle("-fx-font-size: 1em; -fx-background-color: #8F8F8F;");
+        backButton.setEffect(new DropShadow());
+        
         HBox hbox2 = new HBox();
         hbox2.getChildren().addAll(backButton);
 
@@ -124,6 +135,7 @@ public class CreateStudentScene extends Application {
         layout.setCenter(hbox1);
         layout.setAlignment(welcomeText, Pos.TOP_CENTER);
         layout.setTop(welcomeText);
+        layout.setStyle("-fx-background-color: #B4B4B4;");
         
         
        

@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -27,6 +28,8 @@ public class StudentsScene extends Application {
         Label welcomeText = new Label("Cursisten");
         welcomeText.setStyle("-fx-font-size:8em; ");
         Button backButton = new Button("Terug");
+        backButton.setStyle("-fx-font-size: 1em; -fx-background-color: #8F8F8F;");
+        backButton.setEffect(new DropShadow());
 
         // Lsit view
         ListView listView = new ListView();
@@ -59,7 +62,9 @@ female.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
 VBox prog2 = new VBox(female, progresBar2);
 
 Button create = new Button("Aanmaken");
-create.setStyle("-fx-font-size: 2em; ");
+
+create.setStyle("-fx-font-size: 2em; -fx-background-color: #8F8F8F;");
+create.setEffect(new DropShadow());
 
 
 
@@ -78,6 +83,7 @@ hbox.setAlignment(Pos.CENTER);
         layout.setAlignment(backButton, Pos.BOTTOM_LEFT);
         layout.setBottom(backButton);
         layout.setCenter(hbox);
+        layout.setStyle("-fx-background-color: #B4B4B4;");
 
         Scene sc = new Scene(layout, 960, 600, Color.BEIGE);
 
