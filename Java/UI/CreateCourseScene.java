@@ -210,10 +210,9 @@ public class CreateCourseScene extends Application {
                         && (courseName.getText() != null && !courseName.getText().isEmpty())
                         && (courseSubject.getText() != null && !courseSubject.getText().isEmpty())
                         && (courseDifficulty.getValue() != null) && isTrue) {
-                            CourseSql courseSql = new CourseSql();
                             Course course = new Course("i", "i", "i", "i");
                             String[] input = {courseName.getText(), courseSubject.getText(), courseIntroductoryText.getText(), courseDifficulty.getValue().toString()};
-                            courseSql.insertCourseSql(input);
+                            course.insertCourse(input);
                     label.setText("Cursus, " + courseName.getText() + ", is aangemaakt.");
                 } else {
                     if (!isTrue) {

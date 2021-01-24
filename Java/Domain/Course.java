@@ -3,8 +3,8 @@ package Java.Domain;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import Java.DB.SqlManager;
 import Java.DB.CourseSql;
+import Java.DB.SqlManager;
  
 public class Course { 
     private String name; 
@@ -42,8 +42,12 @@ public class Course {
         manager.executeSql(courseSql.insertCourseSql(input));
     }
 
-    public void updateCourse(String ID, String[] input){
-        manager.executeSql(courseSql.updateCourseSql(ID, input));
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void deleteCourse(String ID){
