@@ -5,8 +5,10 @@ import java.util.ArrayList;
 
 import Java.UI.SelectedCourseScene;
 import Java.Domain.Course;
-import Java.UI.addCourse;
+import Java.UI.addCertificate;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -23,10 +25,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
 
 public class CourseScene extends Application {
-
-String temporary = "134124244";
 
     @Override
     public void start(Stage courseStage) throws Exception {
@@ -98,7 +99,7 @@ String temporary = "134124244";
         // right spot
         for (Course x : courseList) {
             tableViewAll.getItems()
-                    .add(new addCourse(x.getCourseName(), x.getSubject(), x.getIntroductoryText(), x.getDifficulty()));
+                    .add(new addCourse(x.getName(), x.getSubject(), x.getIntroductoryText(), x.getDifficulty()));
         }
 
         // Add the table to the grid
@@ -174,20 +175,26 @@ String temporary = "134124244";
         });
 
         tableViewAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            
+
+
             @Override
             public void handle(MouseEvent event) {
-                
-                System.out.println("clicked on " + tableViewAll.getSelectionModel().getSelectedItem().getClass().getName());
-                System.out.println("To string " + tableViewAll.getId());
-                temporary = tableViewAll.getSelectionModel().getSelectedItem().getClass().getName();
-                SelectedCourseScene selectedCourseScene = new SelectedCourseScene();
-                Stage scene2 = new Stage();
+                // TODO Auto-generated method stub
                 try {
-                    selectedCourseScene.start(scene2);
-                    courseStage.close();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("layout2.fxml"));
+                    Parent root = loader.load();
+            
+                    //The following both lines are the only addition we need to pass the arguments
+                    SelectedCourseScene selectedCourseScene = loader.getController();
+                    selectedCourseScene.setLabelText(courseList.get(tableViewAll.getSelectionModel().getSelectedIndex()).getName());
+            
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Layout2 + Controller2");
+                    stage.show();
+            
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });
