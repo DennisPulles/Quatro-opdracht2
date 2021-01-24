@@ -35,11 +35,11 @@ public class Certificate {
         }
     }
 
-    public void updateCertificate(String ID, String input[]){
+    public void updateCertificate(String ID, String[] input){
         manager.executeSql(certificateSql.updateCertificateSql(ID, input));
     }
 
-    public void insertCertificate(String input[]){
+    public void insertCertificate(String[] input){
         manager.executeSql(certificateSql.insertCertificateSql(input));
     }
 
