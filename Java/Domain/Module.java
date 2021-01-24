@@ -13,6 +13,7 @@ public class Module extends ContentItems{
     private String description; 
     private String contactName; 
     private String contactEmail; 
+    private ArrayList<Module> moduleInfo;
  
     public Module(String title, String version, int serialNumber, String description, String contactName, String contactEmail){ 
         this.title = title;
@@ -39,4 +40,35 @@ public class Module extends ContentItems{
         }
     }
 
+    public void insertModule(String[] input, String ID){
+        manager.executeSql(moduleSql.insertModuleSql(ID, input));
+    }
+
+    public ArrayList<Module> getModuleInfo(){
+        return moduleInfo;
+    }
+
+    public String getTitle(){
+        return title;
+    }
+
+    public String getVersion(){
+        return version;
+    }
+
+    public int getSerialNumber(){
+        return serialNumber;
+    }
+
+    public String getDescription(){
+        return description;
+    }
+
+    public String getContactName(){
+        return contactName;
+    }
+
+    public String getContactEmail(){
+        return contactEmail;
+    }
 } 
