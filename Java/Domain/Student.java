@@ -51,6 +51,21 @@ public class Student {
         }
     }
 
+    public void getStudentSingular(String ID){
+        ResultSet studentRS = manager.executeSql(studentSql.selectStudentSql(ID));
+        try {
+            while (studentRS.next()) {
+                Student student = new Student(studentRS.getString("StudentEmail"), studentRS.getString("StudentName"), studentRS.getString("StudentBirthdate"),studentRS.getString("Gender"),
+                        studentRS.getString("Address"), studentRS.getString("City"),
+                        studentRS.getString("Country"), studentRS.getString("Zipcode")
+                        );
+                        studentInfo.add(student);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public void updateStudent(String ID, String[] input){
         manager.executeSql(studentSql.updateStudentSql(ID, input));
     }
