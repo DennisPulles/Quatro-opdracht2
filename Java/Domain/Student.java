@@ -16,6 +16,7 @@ public class Student {
     private String country;
     private String postalCode;
     protected ArrayList<Student> studentInfo;
+    protected ArrayList<Student> studentSingular;
 
     //give the class access to the functions from manager and studentSql
     SqlManager manager = new SqlManager();
@@ -62,7 +63,7 @@ public class Student {
                         studentInfo.add(student);
             }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("wtf");
         }
     }
 
