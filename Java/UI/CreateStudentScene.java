@@ -2,6 +2,7 @@ package Java.UI;
 
 import java.time.LocalDate;
 
+import Java.Logic.Validator;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ComboBoxBase;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -27,6 +29,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 
 public class CreateStudentScene extends Application {
 
@@ -109,7 +112,10 @@ public class CreateStudentScene extends Application {
         Button button = new Button("Read Date");
 
         button.setOnAction(action -> {
-            LocalDate userDate = datePicker.getValue();
+
+            String userDate = String.valueOf(datePicker.getValue());
+
+
         });
         final Label label = new Label();
         label.setStyle("-fx-font-size: 2em; ");
@@ -117,29 +123,50 @@ public class CreateStudentScene extends Application {
         GridPane.setColumnSpan(label, 2);
         grid.getChildren().add(label);
 
-                // Defining the Submit button
-                Button submit = new Button("Aanmaken");
-                submit.setStyle("-fx-font-size: 2em; -fx-background-color: #1da06a");
-                GridPane.setConstraints(submit, 2, 1);
-                grid.getChildren().add(submit);
+        // Defining the Submit button
+        Button submit = new Button("Aanmaken");
+        submit.setStyle("-fx-font-size: 2em; -fx-background-color: #1da06a");
+        GridPane.setConstraints(submit, 2, 1);
+        grid.getChildren().add(submit);
 
-                 // Setting an action for the Submit button
+        // Setting an action for the Submit button
+
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                
-                if ((userEmail.getText() != null && !userName.getText().isEmpty())
+                Validator validator = new Validator();
+                String userDate = String.valueOf(datePicker.getValue());
+                String[] x = userDate.split("-");
+                int year = Integer.valueOf(x[0]);
+                int month = Integer.valueOf(x[1]);
+                int day = Integer.valueOf(x[2]);
+                System.out.println("fout bij " + day+ ", " + month + ", " + year);
+				if ((userEmail.getText() != null && !userName.getText().isEmpty())
                         && (userHn.getText() != null && !userCity.getText().isEmpty())
                         && (userCountry.getText() != null && !userZipcode.getText().isEmpty())
-                        && (datePicker.getValue() != null) && (userGender.getValue() != null)) {
+                        && (datePicker.getValue() != null) && (userGender.getValue() != null)
+                        && (validator.emailValidator(userEmail.getText()) != false)
+                        && (validator.formatPostalCode(userZipcode.getText()) != "NullPointerException")
+                        && (validator.formatPostalCode(userZipcode.getText()) != "IllegalArgumentException")
+                        && (validator.formatPostalCode(userZipcode.getText()) != null)
+                        &&(validator.validateDate(day, month, year)!= false)) {
                     label.setText("Cursist " + userName.getText() + " is aangemaakt.");
                 } else {
-
+                    if (validator.validateDate(day, month, year) == false) {
+                        label.setText("U heeft geen geldige geboorte datum gekozen, probeer opnieuw.");
+                    }
+                    }
                     if (datePicker.getValue() == null) {
                         label.setText("U heeft geen geboorte datum gekozen, probeer opnieuw.");
                     }
                     if (userGender.getValue() == null) {
                         label.setText("U heeft geen geslacht gekozen, probeer opnieuw.");
+                    }
+                    if (validator.formatPostalCode(userZipcode.getText()) == "IllegalArgumentException") {
+                        label.setText("U heeft geen geldige postcode ingevoerd, probeer opnieuw.");
+                    }
+                    if (validator.formatPostalCode(userZipcode.getText()) == "NullPointerException") {
+                        label.setText("U heeft geen postcode ingevoerd, probeer opnieuw.");
                     }
                     if (userZipcode.getText().isEmpty()) {
                         label.setText("U heeft geen postcode ingevoerd, probeer opnieuw.");
@@ -156,25 +183,23 @@ public class CreateStudentScene extends Application {
                     if (userName.getText().isEmpty()) {
                         label.setText("U heeft geen naam ingevoerd, probeer opnieuw.");
                     }
+                    if (validator.emailValidator(userEmail.getText()) == false) {
+                        label.setText("U heeft geen geldig email ingevoerd, probeer opnieuw.");
+                    }
                     if (userEmail.getText().isEmpty()) {
                         label.setText("U heeft geen email ingevoerd, probeer opnieuw.");
                     }
-
-
-
-
-
                 }
             }
-        });
-        
-                // Defining the Clear button
-                Button clear = new Button("Leeg maken");
-                clear.setStyle("-fx-font-size: 2em; -fx-background-color: #f2a81d");
-                GridPane.setConstraints(clear, 2, 2);
-                grid.getChildren().add(clear);
+        );
 
-                 // Setting an action for the Clear button
+        // Defining the Clear button
+        Button clear = new Button("Leeg maken");
+        clear.setStyle("-fx-font-size: 2em; -fx-background-color: #f2a81d");
+        GridPane.setConstraints(clear, 2, 2);
+        grid.getChildren().add(clear);
+
+        // Setting an action for the Clear button
         clear.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -191,15 +216,13 @@ public class CreateStudentScene extends Application {
             }
         });
 
-
-
         HBox hbox1 = new HBox();
         hbox1.getChildren().addAll(grid);
         hbox1.setAlignment(Pos.CENTER);
         Button backButton = new Button("Terug");
         backButton.setStyle("-fx-font-size: 1em; -fx-background-color: #8F8F8F;");
         backButton.setEffect(new DropShadow());
-        
+
         HBox hbox2 = new HBox();
         hbox2.getChildren().addAll(backButton);
 
@@ -210,7 +233,7 @@ public class CreateStudentScene extends Application {
         layout.setAlignment(welcomeText, Pos.TOP_CENTER);
         layout.setTop(welcomeText);
         layout.setStyle("-fx-background-color: #d6d6d6;");
-        
+
         Scene sc = new Scene(layout, 960, 600, Color.BEIGE);
 
         createStage.setScene(sc);
@@ -233,5 +256,4 @@ public class CreateStudentScene extends Application {
         });
 
     }
-
 }

@@ -1,6 +1,5 @@
 package Java.Domain;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ import Java.DB.StudentSql;
 public class Student {
     private String studentEmail;
     private String studentName;
-    private Date studentBirthdate;
+    private String studentBirthdate;
     private String gender;
     private String address;
     private String city;
@@ -22,7 +21,7 @@ public class Student {
     SqlManager manager = new SqlManager();
     StudentSql studentSql = new StudentSql();
 
-    public Student(String studentEmail, String studentName, Date studentBirthdate, String gender, String address,
+    public Student(String studentEmail, String studentName, String studentBirthdate, String gender, String address,
             String city, String country, String postalCode) {
         this.studentInfoArrayList = new ArrayList<>();
         this.studentEmail = studentEmail;
@@ -49,7 +48,7 @@ public class Student {
         }
         try {
             while (studentRS.next()) {
-                Student student = new Student(studentRS.getString("StudentEmail"), studentRS.getString("StudentName"), studentRS.getDate("StudentBirthdate"),studentRS.getString("Gender"),
+                Student student = new Student(studentRS.getString("StudentEmail"), studentRS.getString("StudentName"), studentRS.getString("StudentBirthdate"),studentRS.getString("Gender"),
                         studentRS.getString("Address"), studentRS.getString("City"),
                         studentRS.getString("Country"), studentRS.getString("Zipcode")
                         );
@@ -72,7 +71,7 @@ public class Student {
         return studentName;
     }
 
-    public Date getStudentBirthdate() {
+    public String getStudentBirthdate() {
         return studentBirthdate;
     }
 

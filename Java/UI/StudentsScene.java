@@ -43,7 +43,7 @@ public class StudentsScene extends Application {
         Date date = Date.valueOf(str);
 
 
-    Student studentEmail = new Student("a","a",date,"a","a","a","a","a");
+    Student studentEmail = new Student("a","a","a","a","a","a","a","a");
     studentEmail.getStudentResult();
     ArrayList<Student> list = studentEmail.getAllStudents();
         
