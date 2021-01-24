@@ -8,8 +8,8 @@ public class RegistrationSql {
     }
 
     //read
-    public String selectRegistationsSql(){
-        return "SELECT * FROM Registation";
+    public String selectRegistationsWithCertificateSql(){
+        return "SELECT * FROM Registration INNER JOIN Certificate ON Registration.CertificateID = Certificate.CertificateID";
     }
 
     //update
@@ -18,7 +18,7 @@ public class RegistrationSql {
     }
 
     //delete
-    public String deleteRegistrationSql(String Student, String Course){
-        return "DELETE FROM Registration WHERE StudentEmail = '" + Student + "' && CourseName = '" + Course + "'";
+    public String deleteRegistrationSql(int certificate){
+        return "DELETE FROM Registration WHERE CertificateID = '" + certificate + "'";
     }
 }
