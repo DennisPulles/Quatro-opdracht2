@@ -16,6 +16,11 @@ public class CourseSql {
         return "SELECT * FROM Course";
     }
 
+    //Amount course completed.
+    public String selectCourseCompletionSql(){
+        return "SELECT Course.CourseName, COUNT(ModuleCompletion.PercentageCompleted) FROM ModuleCompletion INNER JOIN Course ON ModuleCompletion.CourseName = Course.CourseName WHERE ModuleCompletion.PercentageCompleted = 100 GROUP BY Course.CourseName";
+    }
+
     //Update
     public String updateCourseSql(String ID, String[] input){
         return "UPDATE Course SET CourseName = '" + input[0] + "', Subject = '" + input[1] + "', IntroductoryText = '" + input[2] + "', Difficulty = '" + input[3] + "' WHERE CourseName = '" + ID + "'";
