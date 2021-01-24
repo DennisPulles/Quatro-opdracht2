@@ -15,6 +15,7 @@ public class Module extends ContentItems{
     private String contactEmail; 
     private ArrayList<Module> moduleInfo;
  
+    //constructor for the module class
     public Module(String title, String version, int serialNumber, String description, String contactName, String contactEmail){ 
         this.title = title;
         this.version = version;
@@ -28,6 +29,7 @@ public class Module extends ContentItems{
     SqlManager manager = new SqlManager();
     ModuleSql moduleSql = new ModuleSql();
 
+    //Sql functions
     //get an arraylist of all Module in the database
     public void getModuleResult() {
         ResultSet moduleRS = manager.executeSql(moduleSql.selectModulesSql());
@@ -52,6 +54,7 @@ public class Module extends ContentItems{
         manager.executeSql(moduleSql.deleteModuleSql(ID));
     }
 
+    //getters for all variables
     public ArrayList<Module> getModuleInfo(){
         return moduleInfo;
     }
