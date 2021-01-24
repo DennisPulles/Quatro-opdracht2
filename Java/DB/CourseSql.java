@@ -2,7 +2,7 @@ package Java.DB;
 
 public class CourseSql {
     
-    //Create
+    //Create 
     public String insertCourseSql(String input[]){
         return "INSERT INTO Course(CourseName, Subject, IntroductoryText, Difficulty) VALUES ('" + input[0] + "', '" + input[1] + "', '" + input[2] + "', '" + input[3] + "')";
     }
