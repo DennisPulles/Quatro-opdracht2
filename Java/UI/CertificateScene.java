@@ -54,8 +54,6 @@ public class CertificateScene extends Application {
         column4.setCellValueFactory(new PropertyValueFactory<>("grade"));
         TableColumn<Registration, CheckBox> column5 = new TableColumn<>("Handtekening");
         column5.setCellValueFactory(new PropertyValueFactory<>("signature"));
-        TableColumn<Registration, Button> column6 = new TableColumn<>("Bevestiging");
-        column6.setCellValueFactory(new PropertyValueFactory<>("confirm"));
 
         // Add columns to table
         certificateView.getColumns().add(column1);
@@ -63,13 +61,11 @@ public class CertificateScene extends Application {
         certificateView.getColumns().add(column3);
         certificateView.getColumns().add(column4);
         certificateView.getColumns().add(column5);
-        certificateView.getColumns().add(column6);
 
         CheckBox checkBoxSignature = new CheckBox();
         String str = "2020-03-31";
         Date date = Date.valueOf(str);
         Button registrationConfirmButton = new Button("ok");
-
 
         Registration registration = new Registration("", "", date, 0, "", 0);
         registration.getRegistrationResult();
@@ -78,15 +74,21 @@ public class CertificateScene extends Application {
         // Create a row for every entry in the table and add its information to the
         // right spot
         for (Registration x : registrationList) {
-            certificateView.getItems().add(new addRegistration(x.getStudentEmail(), x.getCourseName(), x.getRegistrationDate(), x.getGrade()));
+            if (!x.getSignature().isSelected()) {
+                certificateView.getItems().add(new addRegistration(x.getStudentEmail(), x.getCourseName(),
+                        x.getRegistrationDate(), x.getGrade()));
+            }
         }
+        // Button to confirm
+        Button button = new Button("Confirm");
+        button.setStyle("-fx-font-size: 2em; ");
 
         // Adding a Label to display a response
         final Label label = new Label();
         label.setStyle("-fx-font-size: 2em; ");
-        
+
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(certificateView, label);
+        vbox.getChildren().addAll(certificateView, button, label);
         vbox.setSpacing(100);
 
         BorderPane layout = new BorderPane();
@@ -102,27 +104,65 @@ public class CertificateScene extends Application {
         certificateStage.setScene(sc);
         certificateStage.setMaximized(true);
         certificateStage.show();
-        for (Registration i : registrationList) {
-            registrationList.get((certificateView.getSelectionModel().getSelectedIndex()) + 1).getConfirmButton()
-                    .setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    int c = 1;
-                    for (Registration j : registrationList) {
-                        if (i == j) {
-                            if (registrationList.get(certificateView.getSelectionModel().getSelectedIndex()).getSignature().isSelected()) {
-                                System.out.println("De certificatie (op positie " + c + ") is goedgekeurd en opgeslagen");
-                                label.setText("De certificatie (op positie " + c + ") is goedgekeurd en opgeslagen");
-                            } else {
-                                System.out.println("Er is iets misgegaan");
-                                label.setText("Er is iets misgegaan");
-                            }
-                        }
-                        c++;
+
+        System.out.println(certificateView.getItems());
+        certificateView.onMouseClickedProperty(new Eventhandler<ActionEvent e>() {
+
+        });
+
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                boolean itemsChecked = false;
+                for (Registration i : registrationList) {
+                    if (i.getSignature().isSelected()) {
+                        System.out.println(
+                                "De certificatie (van " + i.getStudentEmail() + ") is goedgekeurd en opgeslagen");
+                        label.setText("De certificatie (van " + i.getStudentEmail() + ") is goedgekeurd en opgeslagen");
+                        itemsChecked = true;
+                    } else { 
+                        System.out.println("wtf");
                     }
+                    System.out.println(i);
                 }
-            });
-        }
+                if (itemsChecked) {
+                } else {
+                    System.out.println("Er is iets misgegaan");
+                    label.setText("Er is iets misgegaan");
+                }
+            }
+        });
+        // while (true) {
+        // for (Registration i : registrationList) {
+        // System.out.println("index van " + certificateView.getSelectionModel() + " is
+        // "
+        // + certificateView.getSelectionModel().getSelectedIndex());
+        // registrationList.get((certificateView.getSelectionModel().getSelectedIndex())
+        // + 1).getConfirmButton()
+        // .setOnAction(new EventHandler<ActionEvent>() {
+        // @Override
+        // public void handle(ActionEvent e) {
+        // int c = 1;
+        // for (Registration j : registrationList) {
+        // if (i == j) {
+        // if
+        // (registrationList.get(certificateView.getSelectionModel().getSelectedIndex())
+        // .getSignature().isSelected()) {
+        // System.out.println("De certificatie (op positie " + c
+        // + ") is goedgekeurd en opgeslagen");
+        // label.setText("De certificatie (op positie " + c
+        // + ") is goedgekeurd en opgeslagen");
+        // } else {
+        // System.out.println("Er is iets misgegaan");
+        // label.setText("Er is iets misgegaan");
+        // }
+        // }
+        // c++;
+        // }
+        // }
+        // });
+        // }
+        // }
         backButton.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
