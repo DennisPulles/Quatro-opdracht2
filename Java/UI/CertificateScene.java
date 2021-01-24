@@ -105,29 +105,20 @@ public class CertificateScene extends Application {
         certificateStage.setMaximized(true);
         certificateStage.show();
 
-        System.out.println(certificateView.getItems());
-        certificateView.onMouseClickedProperty(new Eventhandler<ActionEvent e>() {
-
-        });
-
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 boolean itemsChecked = false;
                 for (Registration i : registrationList) {
                     if (i.getSignature().isSelected()) {
-                        System.out.println(
-                                "De certificatie (van " + i.getStudentEmail() + ") is goedgekeurd en opgeslagen");
                         label.setText("De certificatie (van " + i.getStudentEmail() + ") is goedgekeurd en opgeslagen");
                         itemsChecked = true;
                     } else { 
-                        System.out.println("wtf");
                     }
                     System.out.println(i);
                 }
                 if (itemsChecked) {
                 } else {
-                    System.out.println("Er is iets misgegaan");
                     label.setText("Er is iets misgegaan");
                 }
             }
