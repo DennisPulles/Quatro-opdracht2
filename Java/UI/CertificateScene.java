@@ -4,6 +4,7 @@ import java.security.Signature;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import Java.Domain.Certificate;
 import Java.Domain.Course;
 import Java.Domain.Registration;
 import Java.Domain.Student;
@@ -69,14 +70,15 @@ public class CertificateScene extends Application {
         Date date = Date.valueOf(str);
         Button registrationConfirmButton = new Button("ok");
 
-        ArrayList<addRegistration> arrayListCertificate = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
-            Button button = new Button("ok");
-            addRegistration addRegistration = new addRegistration("naam@student.avans.nl", "Java 101", date, 10.0,
-                    new CheckBox(), button);
-            certificateView.getItems().add(addRegistration);
-            arrayListCertificate.add(addRegistration);
+        Registration registration = new Registration("", "", date, 0, "", 0);
+        registration.getRegistrationResult();
+        ArrayList<Registration> registrationList = registration.getRegistrationInfo();
+
+        // Create a row for every entry in the table and add its information to the
+        // right spot
+        for (Registration x : registrationList) {
+            certificateView.getItems().add(new addRegistration(x.getStudentEmail(), x.getCourseName(), x.getRegistrationDate(), x.getGrade()));
         }
 
         // Adding a Label to display a response
@@ -100,14 +102,15 @@ public class CertificateScene extends Application {
         certificateStage.setScene(sc);
         certificateStage.setMaximized(true);
         certificateStage.show();
-        for (addRegistration i : arrayListCertificate) {
-            i.getConfirm().setOnAction(new EventHandler<ActionEvent>() {
+        for (Registration i : registrationList) {
+            registrationList.get((certificateView.getSelectionModel().getSelectedIndex()) + 1).getConfirmButton()
+                    .setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
                     int c = 1;
-                    for (addRegistration j : arrayListCertificate) {
+                    for (Registration j : registrationList) {
                         if (i == j) {
-                            if (i.getSignature().isSelected()) {
+                            if (registrationList.get(certificateView.getSelectionModel().getSelectedIndex()).getSignature().isSelected()) {
                                 System.out.println("De certificatie (op positie " + c + ") is goedgekeurd en opgeslagen");
                                 label.setText("De certificatie (op positie " + c + ") is goedgekeurd en opgeslagen");
                             } else {

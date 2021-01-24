@@ -46,7 +46,6 @@ public class Webcast extends ContentItems {
         }
     }
 
-    //get an arraylist of the top 3 most viewed webcasts
     public void getTopWebcastsResult() {
         ResultSet webcastRS = manager.executeSql(webcastSql.selectWebcastsTopSql());
         try {
@@ -57,11 +56,6 @@ public class Webcast extends ContentItems {
         } catch (Exception e) {
             System.out.println(e);
         }
-    }
-
-    //insert new webcast
-    public void insertWebcast(String ID, String[] input){
-        manager.executeSql(webcastSql.insertWebcastSql(ID, input));
     }
 
     //getter for all variables

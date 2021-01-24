@@ -2,6 +2,7 @@ package Java.UI;
 
 import java.time.LocalDate;
 
+import Java.Domain.Student;
 import Java.Logic.Validator;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -151,6 +152,16 @@ public class CreateStudentScene extends Application {
                         && (validator.formatPostalCode(userZipcode.getText()) != null)
                         &&(validator.validateDate(day, month, year)!= false)) {
                     label.setText("Cursist " + userName.getText() + " is aangemaakt.");
+                    String userStringGender = (String)userGender.getValue();
+                    Student createStudent = new Student(userEmail.getText(), userName.getText(),userDate, userStringGender, userHn.getText(), userCity.getText(), userCountry.getText(),
+                    userZipcode.getText());
+                    String[] input = {userEmail.getText(), userName.getText(),userDate, userStringGender, userHn.getText(), userCity.getText(), userCountry.getText(),
+                        userZipcode.getText()};
+                    createStudent.insertStudent(input);
+                    //Clears all submited data
+
+
+                    // (StudentEmail, StudentName, StudentBirthdate, Gender, Address, City, Country, Zipcode) 
                 } else {
                     if (validator.validateDate(day, month, year) == false) {
                         label.setText("U heeft geen geldige geboorte datum gekozen, probeer opnieuw.");

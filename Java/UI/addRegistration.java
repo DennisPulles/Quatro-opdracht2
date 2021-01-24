@@ -14,14 +14,13 @@ public class addRegistration {
     private CheckBox signature;
     private Button confirm;
 
-    public addRegistration(String studentEmail, String courseName, Date registrationDate, Double grade,
-            CheckBox signature, Button confirm) {
+    public addRegistration(String studentEmail, String courseName, Date registrationDate, Double grade) {
         this.studentEmail = studentEmail;
         this.courseName = courseName;
         this.registrationDate = registrationDate;
         this.grade = grade;
-        this.signature = signature;
-        this.confirm = confirm;
+        this.signature = new CheckBox();
+        this.confirm = new Button("ok");
     }
 
     public String getStudentEmail() {

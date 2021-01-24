@@ -5,8 +5,10 @@ import java.util.ArrayList;
 
 import Java.UI.SelectedCourseScene;
 import Java.Domain.Course;
-import Java.UI.addCourse;
+import Java.UI.addCertificate;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -23,10 +25,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
 
 public class CourseScene extends Application {
-
-String temporary = "134124244";
 
     @Override
     public void start(Stage courseStage) throws Exception {
@@ -98,7 +99,7 @@ String temporary = "134124244";
         // right spot
         for (Course x : courseList) {
             tableViewAll.getItems()
-                    .add(new addCourse(x.getCourseName(), x.getSubject(), x.getIntroductoryText(), x.getDifficulty()));
+                    .add(new addCourse(x.getName(), x.getSubject(), x.getIntroductoryText(), x.getDifficulty()));
         }
 
         // Add the table to the grid
@@ -127,14 +128,11 @@ String temporary = "134124244";
         tableViewTop3.getColumns().add(column7);
         tableViewTop3.getColumns().add(column8);
 
-        tableViewTop3.getItems().add(new addCourse("Java 101", "Java coding language",
-                "there once was a small little teeny tiny baby boy, who was very interested in health risks by sitting behind a computer for very long amounts of time. So he wanted to start with java coding.",
-                "Beginner"));
-        tableViewTop3.getItems()
-                .add(new addCourse("HTML", "HTML coding language", "this is an introductory for HTML", "gevorderd"));
-        tableViewTop3.getItems().add(new addCourse("Java 101", "Java coding language",
-                "there once was a small little teeny tiny baby boy, who was very interested in health risks by sitting behind a computer for very long amounts of time. So he wanted to start with java coding.",
-                "Beginner"));
+        for (Course x : courseList) {
+            tableViewAll.getItems()
+                    .add(new addCourse(x.getName(), x.getSubject(), x.getIntroductoryText(), x.getDifficulty()));
+        }
+
         HBox hbox2 = new HBox();
         hbox2.getChildren().addAll(tableViewTop3);
         hbox2.setAlignment(Pos.TOP_CENTER);
@@ -174,20 +172,26 @@ String temporary = "134124244";
         });
 
         tableViewAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            
+
+
             @Override
             public void handle(MouseEvent event) {
-                
-                System.out.println("clicked on " + tableViewAll.getSelectionModel().getSelectedItem().getClass().getName());
-                System.out.println("To string " + tableViewAll.getId());
-                temporary = tableViewAll.getSelectionModel().getSelectedItem().getClass().getName();
-                SelectedCourseScene selectedCourseScene = new SelectedCourseScene();
-                Stage scene2 = new Stage();
+                // TODO Auto-generated method stub
                 try {
-                    selectedCourseScene.start(scene2);
-                    courseStage.close();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("layout2.fxml"));
+                    Parent root = loader.load();
+            
+                    //The following both lines are the only addition we need to pass the arguments
+                    SelectedCourseScene selectedCourseScene = loader.getController();
+                    selectedCourseScene.setLabelText(courseList.get(tableViewAll.getSelectionModel().getSelectedIndex()).getName());
+            
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Layout2 + Controller2");
+                    stage.show();
+            
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });
