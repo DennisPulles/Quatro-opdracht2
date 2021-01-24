@@ -8,7 +8,7 @@ public class CertificateSql {
     }
 
     //read
-    private String selectCertificateInRegistrationSql(String ID){
+    public String selectCertificateInRegistrationSql(){
         return "SELECT * FROM Certificate INNER JOIN Registration ON Certificate.CertificateID = Registration.CertificateID";
     }
 
