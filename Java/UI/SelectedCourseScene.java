@@ -1,21 +1,18 @@
 package Java.UI;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import Java.UI.SelectedCourseScene;
+import Java.UI.CourseScene;
 import Java.Domain.Course;
 import Java.UI.addCourse;
 import javafx.application.Application;
+import javafx.beans.value.WeakChangeListener;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -24,15 +21,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class CourseScene extends Application {
-
-String temporary = "134124244";
+public class SelectedCourseScene extends CourseScene {
+String test123 = "fdsafsdfsafas";
 
     @Override
     public void start(Stage courseStage) throws Exception {
+        test123 = super.temporary;
+        System.out.println(super.temporary);
+        System.out.println(test123);
         courseStage.setTitle("Codecademy");
-
-        Label welcomeText = new Label("Cursussen");
+        Label welcomeText = new Label(super.temporary);
         welcomeText.setStyle("-fx-font-size:8em; ");
 
         // Creating a GridPane container
@@ -52,12 +50,12 @@ String temporary = "134124244";
         backButton.setLineSpacing(25);
 
         // Label for the tables
-        Label tableViewAllLabel = new Label("Alle cursussen: ");
+        Label tableViewAllLabel = new Label("Aanbevolen cursussen: ");
         tableViewAllLabel.setStyle("-fx-font-size:2em; ");
         GridPane.setConstraints(tableViewAllLabel, 1, 0);
         grid.getChildren().add(tableViewAllLabel);
 
-        Label tableViewTop3Label = new Label("Top 3 cursussen: ");
+        Label tableViewTop3Label = new Label("Aantal cursisten dat deze cursus behaald hebben: ");
         tableViewTop3Label.setStyle("-fx-font-size:2em; ");
         GridPane.setConstraints(tableViewTop3Label, 2, 0);
         grid.getChildren().add(tableViewTop3Label);
@@ -161,30 +159,10 @@ String temporary = "134124244";
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                Main main = new Main();
+                CourseScene courseScene = new CourseScene();
                 Stage scene2 = new Stage();
                 try {
-                    main.start(scene2);
-                    courseStage.close();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-            }
-
-        });
-
-        tableViewAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            
-            @Override
-            public void handle(MouseEvent event) {
-                
-                System.out.println("clicked on " + tableViewAll.getSelectionModel().getSelectedItem().getClass().getName());
-                System.out.println("To string " + tableViewAll.getId());
-                temporary = tableViewAll.getSelectionModel().getSelectedItem().getClass().getName();
-                SelectedCourseScene selectedCourseScene = new SelectedCourseScene();
-                Stage scene2 = new Stage();
-                try {
-                    selectedCourseScene.start(scene2);
+                    courseScene.start(scene2);
                     courseStage.close();
                 } catch (Exception e1) {
                     e1.printStackTrace();
@@ -194,7 +172,6 @@ String temporary = "134124244";
 
         // Button action for create course
         createCourseButton.setOnAction(new EventHandler<ActionEvent>() {
-            
             @Override
             public void handle(ActionEvent e) {
                 CreateCourseScene CreateCourseScene = new CreateCourseScene();

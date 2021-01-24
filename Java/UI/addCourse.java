@@ -14,11 +14,11 @@ public class addCourse {
         this.difficulty = difficulty;
     }
 
-    public String getName() {
+    public String getCourseName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setCourseName(String name) {
         this.name = name;
     }
 
