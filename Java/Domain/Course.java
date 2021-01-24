@@ -11,7 +11,7 @@ public class Course {
     private String subject; 
     private String introductoryText; 
     private String difficulty; 
-    protected ArrayList<Course> courseInfoArrayList;
+    protected ArrayList<Course> courseInfo;
     
     SqlManager manager = new SqlManager();
     CourseSql courseSql = new CourseSql();
@@ -19,7 +19,7 @@ public class Course {
     ResultSet coursesRS = manager.executeSql(courseSql.selectCoursesSql());
 
     public Course(String name, String subject, String introductoryText, String difficulty) {
-        this.courseInfoArrayList = new ArrayList<>();
+        this.courseInfo = new ArrayList<>();
         this.name = name;
         this.subject = subject;
         this.introductoryText = introductoryText;
@@ -31,7 +31,7 @@ public class Course {
         try {
             while (courseRS.next()) {
                 Course course = new Course(courseRS.getString("CourseName"), courseRS.getString("Subject"), courseRS.getString("IntroductoryText"), courseRS.getString("Difficulty"));
-                courseInfoArrayList.add(course);
+                courseInfo.add(course);
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -71,6 +71,6 @@ public class Course {
     }
 
     public ArrayList<Course> getCourseInfoArrayList() {
-        return courseInfoArrayList;
+        return courseInfo;
     }   
 } 

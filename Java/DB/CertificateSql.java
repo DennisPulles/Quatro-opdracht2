@@ -12,6 +12,11 @@ public class CertificateSql {
         return "SELECT * FROM Certificate INNER JOIN Registration ON Certificate.CertificateID = Registration.CertificateID";
     }
 
+    //Certificate from specific student.
+    public String selectCertificateSpecificStudent(String ID){
+        return "SELECT * FROM Certificate INNER JOIN Registration ON Certificate.CertificateID = Registration.CertificateID WHERE Registration.StudentEmail = '" + ID + "'";
+    }
+
     //update
     public String updateCertificateSql(String ID, String input[]){
         return "UPDATE Certificate SET Grade = '" + input[0] + "', SignatoryName = '" + input[1] + "' WHERE CertificateID = '" + ID + "'";
