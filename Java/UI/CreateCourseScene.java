@@ -1,7 +1,10 @@
 package Java.UI;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import Java.DB.CourseSql;
+import Java.Domain.Course;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -207,6 +210,10 @@ public class CreateCourseScene extends Application {
                         && (courseName.getText() != null && !courseName.getText().isEmpty())
                         && (courseSubject.getText() != null && !courseSubject.getText().isEmpty())
                         && (courseDifficulty.getValue() != null) && isTrue) {
+                            CourseSql courseSql = new CourseSql();
+                            Course course = new Course("i", "i", "i", "i");
+                            String[] input = {courseName.getText(), courseSubject.getText(), courseIntroductoryText.getText(), courseDifficulty.getValue().toString()};
+                            courseSql.insertCourseSql(input);
                     label.setText("Cursus, " + courseName.getText() + ", is aangemaakt.");
                 } else {
                     if (!isTrue) {
