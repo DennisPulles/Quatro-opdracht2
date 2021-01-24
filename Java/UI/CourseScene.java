@@ -128,14 +128,11 @@ public class CourseScene extends Application {
         tableViewTop3.getColumns().add(column7);
         tableViewTop3.getColumns().add(column8);
 
-        tableViewTop3.getItems().add(new addCourse("Java 101", "Java coding language",
-                "there once was a small little teeny tiny baby boy, who was very interested in health risks by sitting behind a computer for very long amounts of time. So he wanted to start with java coding.",
-                "Beginner"));
-        tableViewTop3.getItems()
-                .add(new addCourse("HTML", "HTML coding language", "this is an introductory for HTML", "gevorderd"));
-        tableViewTop3.getItems().add(new addCourse("Java 101", "Java coding language",
-                "there once was a small little teeny tiny baby boy, who was very interested in health risks by sitting behind a computer for very long amounts of time. So he wanted to start with java coding.",
-                "Beginner"));
+        for (Course x : courseList) {
+            tableViewAll.getItems()
+                    .add(new addCourse(x.getName(), x.getSubject(), x.getIntroductoryText(), x.getDifficulty()));
+        }
+
         HBox hbox2 = new HBox();
         hbox2.getChildren().addAll(tableViewTop3);
         hbox2.setAlignment(Pos.TOP_CENTER);
