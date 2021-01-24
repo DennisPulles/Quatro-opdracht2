@@ -1,5 +1,8 @@
 package Java.UI;
 
+import java.util.ArrayList;
+
+import Java.Domain.Student;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,6 +25,12 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class ViewStudentScene extends Application {
+    protected String email;
+
+    public ViewStudentScene(String email) {
+        this.email = email;
+    }
+
     @Override
     public void start(Stage viewStudentStage) throws Exception {
         // TODO Auto-generated method stub
@@ -39,23 +48,36 @@ public class ViewStudentScene extends Application {
         VBox vbox2 = new VBox();
         VBox vbox3 = new VBox();
 
-
         // Listview for the student data
         ListView data = new ListView();
-        data.getItems().add("a");
+
+        Student studentEmail = new Student("a", "a", "a", "a", "a", "a", "a", "a");
+        studentEmail.getStudentSingular(email);
+        ArrayList<Student> list = studentEmail.getAllStudents();
+
+        for (Student x : list) {
+            data.getItems().add(x.getStudentEmail());
+            data.getItems().add(x.getStudentName());
+            data.getItems().add(x.getStudentBirthdate());
+            data.getItems().add(x.getGender());
+            data.getItems().add(x.getAddress());
+            data.getItems().add(x.getCity());
+            data.getItems().add(x.getCountry());
+            data.getItems().add(x.getPostalCode());
+        }
+
         vbox1.getChildren().addAll(labelData, data);
 
         // Listview for all the certificates
         ListView allCertificatesListView = new ListView();
         allCertificatesListView.getItems().add("a");
-        
 
         // Listview for all the courses
         ListView courses = new ListView();
         courses.getItems().add("a");
         vbox2.getChildren().addAll(allCertificates, allCertificatesListView, courses);
 
-        // Progressbars 
+        // Progressbars
         ProgressBar pb1 = new ProgressBar(0.6);
         ProgressIndicator pi = new ProgressIndicator(0.6);
 
@@ -93,11 +115,11 @@ public class ViewStudentScene extends Application {
         layout.setBottom(backButton);
         layout.setCenter(hbox);
         layout.setStyle("-fx-background-color: #d6d6d6;");
-        
+
         Scene sc = new Scene(layout, 960, 600);
 
-        // Create a scene 
-        
+        // Create a scene
+
         viewStudentStage.setScene(sc);
         viewStudentStage.setMaximized(true);
         viewStudentStage.show();
@@ -120,4 +142,5 @@ public class ViewStudentScene extends Application {
         });
 
     }
+
 }

@@ -42,21 +42,29 @@ public class StudentsScene extends Application {
         String str = "2020-03-31";
         Date date = Date.valueOf(str);
 
+        Student studentEmail = new Student("a", "a", "a", "a", "a", "a", "a", "a");
+        studentEmail.getStudentResult();
+        ArrayList<Student> list = studentEmail.getAllStudents();
 
-    Student studentEmail = new Student("a","a","a","a","a","a","a","a");
-    studentEmail.getStudentResult();
-    ArrayList<Student> list = studentEmail.getAllStudents();
-        
-        for (Student x: list){
+        for (Student x : list) {
             listView.getItems().add(x.getStudentEmail());
         }
-        
 
         listView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("clicked on " + listView.getSelectionModel().getSelectedItem());
+                
+                String email = String.valueOf(listView.getSelectionModel().getSelectedItem());
+                Stage x = new Stage();
+                ViewStudentScene goToScene = new ViewStudentScene(email);
+                try {
+                    goToScene.start(x);
+                    studentStage.close();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    System.out.println(e);
+                }
             }
         });
 

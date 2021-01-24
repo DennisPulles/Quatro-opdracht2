@@ -127,7 +127,7 @@ public class CreateCourseScene extends Application {
         ArrayList<addModule> arrayListModule = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
-            addModule addModule1 = new addModule((new CheckBox()), "Elements and Structure", "1.14.3",
+            addModule addModule1 = new addModule((new CheckBox()), "Elements and Structure", String.valueOf(04 + i),
                     "Learn about HTML elements and structure, the building blocks of websites.", "Harley Bray");
             courseListModule.getItems().add(addModule1);
             arrayListModule.add(addModule1);
