@@ -41,12 +41,6 @@ public class Student {
     public void getStudentResult() {
         ResultSet studentRS = manager.executeSql(studentSql.selectStudentsSql());
         try {
-            System.out.println(studentRS.getString("StudentName"));
-        } catch (SQLException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-        try {
             while (studentRS.next()) {
                 Student student = new Student(studentRS.getString("StudentEmail"), studentRS.getString("StudentName"), studentRS.getString("StudentBirthdate"),studentRS.getString("Gender"),
                         studentRS.getString("Address"), studentRS.getString("City"),
@@ -58,9 +52,21 @@ public class Student {
             System.out.println(e);
         }
     }
+
+    public void updateStudent(String ID, String[] input){
+        manager.executeSql(studentSql.updateStudentSql(ID, input));
+    }
+
+    public void insertStudent(String[] input){
+        manager.executeSql(studentSql.insertStudentSql(input));
+    }
+
+    public void deleteStudent(String ID){
+        manager.executeSql(studentSql.deleteStudentSql(ID));
+    }
+
     public ArrayList<Student> getAllStudents(){
         return studentInfoArrayList;
-
     }
 
     public String getStudentEmail(){       
