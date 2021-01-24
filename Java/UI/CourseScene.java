@@ -31,7 +31,7 @@ public class CourseScene extends Application {
 
     @Override
     public void start(Stage courseStage) throws Exception {
-        courseStage.setTitle("Codecademy");
+        courseStage.setTitle("Dennis Pulles(2153026), Guus Korbijn(2168557), Tim de Laater(2171083) & Wouter Zegers(2172665)");
 
         Label welcomeText = new Label("Cursussen");
         welcomeText.setStyle("-fx-font-size:8em; ");
@@ -129,7 +129,7 @@ public class CourseScene extends Application {
         tableViewTop3.getColumns().add(column8);
 
         for (Course x : courseList) {
-            tableViewAll.getItems()
+            tableViewTop3.getItems()
                     .add(new addCourse(x.getName(), x.getSubject(), x.getIntroductoryText(), x.getDifficulty()));
         }
 

@@ -25,7 +25,7 @@ public class SelectedCourseScene extends Application {
 
     @Override
     public void start(Stage courseStage) throws Exception {
-        courseStage.setTitle("Codecademy");
+        courseStage.setTitle("Dennis Pulles(2153026), Guus Korbijn(2168557), Tim de Laater(2171083) & Wouter Zegers(2172665)");
 
         String courseName = "";
 

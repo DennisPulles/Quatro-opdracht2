@@ -32,7 +32,7 @@ public class CertificateScene extends Application {
     @Override
     public void start(Stage certificateStage) throws Exception {
         // TODO Auto-generated method stub
-        certificateStage.setTitle("Codecademy");
+        certificateStage.setTitle("Dennis Pulles(2153026), Guus Korbijn(2168557), Tim de Laater(2171083) & Wouter Zegers(2172665)");
 
         Label welcomeText = new Label("Certificaat afronden");
         welcomeText.setStyle("-fx-font-size:8em; ");

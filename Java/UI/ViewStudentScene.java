@@ -34,7 +34,7 @@ public class ViewStudentScene extends Application {
     @Override
     public void start(Stage viewStudentStage) throws Exception {
         // TODO Auto-generated method stub
-        viewStudentStage.setTitle("Codecademy");
+        viewStudentStage.setTitle("Dennis Pulles(2153026), Guus Korbijn(2168557), Tim de Laater(2171083) & Wouter Zegers(2172665)");
 
         // Welcome text and back button
         Label welcomeText = new Label("Cursist");

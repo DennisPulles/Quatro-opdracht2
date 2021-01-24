@@ -21,7 +21,7 @@ public class ViewWebcastScene extends Application {
     @Override
     public void start(Stage viewWebcastStage) throws Exception {
         // TODO Auto-generated method stub
-        viewWebcastStage.setTitle("Codecademy");
+        viewWebcastStage.setTitle("Dennis Pulles(2153026), Guus Korbijn(2168557), Tim de Laater(2171083) & Wouter Zegers(2172665)");
 
         // Welcome text and back button
         Label welcomeText = new Label("Webcast");
