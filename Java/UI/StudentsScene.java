@@ -45,10 +45,10 @@ public class StudentsScene extends Application {
 
     Student studentEmail = new Student("a","a",date,"a","a","a","a","a");
     studentEmail.getStudentResult();
-    ArrayList<Student> list = studentEmail.getStudentEmail();
+    ArrayList<Student> list = studentEmail.getAllStudents();
         
         for (Student x: list){
-            listView.getItems().add(x);
+            listView.getItems().add(x.getStudentEmail());
         }
         
 

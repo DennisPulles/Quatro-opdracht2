@@ -10,19 +10,20 @@ public class SqlManager {
     
     //IMPORTANT CONNECTION INFO
 
-    String connectionUrl = "jdbc:sqlserver://localhost;databaseName=Quatro;integratedSecurity=true;";
 
-    // Connection manages information about the connection with the database.
-    Connection con = null;
-
-    // Statement allows us to execute SQL queries
-    Statement stmt = null;
-
-    // ResultSet is the table that the database returns.
-    ResultSet rs = null;
 
     // executing the sql on the database with the allready created query
     public ResultSet executeSql(String query){
+        String connectionUrl = "jdbc:sqlserver://localhost;databaseName=Quatro;integratedSecurity=true;";
+
+        // Connection manages information about the connection with the database.
+        Connection con = null;
+    
+        // Statement allows us to execute SQL queries
+        Statement stmt = null;
+    
+        // ResultSet is the table that the database returns.
+        ResultSet rs = null;
 
         try {
             // 'Importeer' de driver die je gedownload hebt.
@@ -32,7 +33,8 @@ public class SqlManager {
             
             stmt = con.createStatement();
             // Execute query on the database.
-            rs = stmt.executeQuery(query);
+            return rs = stmt.executeQuery(query);
+            
         }
         // Handle any errors that may have occurred.
         catch (Exception e) {
@@ -40,17 +42,17 @@ public class SqlManager {
         } finally {
             if (rs != null)
                 try {
-                    rs.close();
+                    // rs.close();
                 } catch (Exception e) {
                 }
             if (stmt != null)
                 try {
-                    stmt.close();
+                    // stmt.close();
                 } catch (Exception e) {
                 }
             if (con != null)
                 try {
-                    con.close();
+                    // con.close();
                 } catch (Exception e) {
                 }
         }

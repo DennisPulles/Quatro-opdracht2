@@ -42,21 +42,30 @@ public class Student {
     public void getStudentResult() {
         ResultSet studentRS = manager.executeSql(studentSql.selectStudentsSql());
         try {
+            System.out.println(studentRS.getString("StudentName"));
+        } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        try {
             while (studentRS.next()) {
-                Student name = new Student(studentRS.getString("StudentEmail"), studentRS.getString("StudentName"), studentRS.getDate("StudentBirthdate"),studentRS.getString("Gender"),
+                Student student = new Student(studentRS.getString("StudentEmail"), studentRS.getString("StudentName"), studentRS.getDate("StudentBirthdate"),studentRS.getString("Gender"),
                         studentRS.getString("Address"), studentRS.getString("City"),
-                        studentRS.getString("Country"), studentRS.getString("PostalCode")
+                        studentRS.getString("Country"), studentRS.getString("Zipcode")
                         );
-                        studentInfoArrayList.add(name);
-                        System.out.println("hey");
+                        studentInfoArrayList.add(student);
             }
         } catch (Exception e) {
             System.out.println(e);
         }
     }
+    public ArrayList<Student> getAllStudents(){
+        return studentInfoArrayList;
 
-    public ArrayList getStudentEmail(){       
-        return studentInfoArrayList;        
+    }
+
+    public String getStudentEmail(){       
+        return studentEmail;        
     }
 
     public String getStudentName() {
