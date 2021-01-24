@@ -1,8 +1,6 @@
 package Java.Domain;
 
-import java.sql.Date;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Java.DB.SqlManager;
@@ -40,44 +38,35 @@ public class Course {
         }
     }
 
-    public String getCourseName() {
-        return name;
+    public void insertCourse(String[] input){
+        manager.executeSql(courseSql.insertCourseSql(input));
     }
 
-    public void setCourseName(String name) {
-        this.name = name;
+    public void updateCourse(String ID, String[] input){
+        manager.executeSql(courseSql.updateCourseSql(ID, input));
+    }
+
+    public void deleteCourse(String ID){
+        manager.executeSql(courseSql.deleteCourseSql(ID));
+    }
+
+    public String getCourseName() {
+        return name;
     }
 
     public String getSubject() {
         return subject;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
     public String getIntroductoryText() {
         return introductoryText;
-    }
-
-    public void setIntroductoryText(String introductoryText) {
-        this.introductoryText = introductoryText;
     }
 
     public String getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
-    }
-
     public ArrayList<Course> getCourseInfoArrayList() {
         return courseInfoArrayList;
-    }
-
-    public void setCourseInfoArrayList(ArrayList<Course> courseInfoArrayList) {
-        this.courseInfoArrayList = courseInfoArrayList;
-    }
-   
+    }   
 } 
