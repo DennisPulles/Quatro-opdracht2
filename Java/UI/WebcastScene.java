@@ -1,5 +1,7 @@
 package Java.UI;
 
+import java.util.ArrayList;
+
 import Java.Domain.Webcast;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -54,29 +56,16 @@ public class WebcastScene extends Application {
         tableViewAllWebcasts.getColumns().add(column4);
 
         // Add webcasts to table
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 10, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 20, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 30, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
-        tableViewAllWebcasts.getItems().add(new addWebcast("Guus", 3, "Guus", 45));
+       
+        Webcast webcast = new Webcast("a",0,"a", "a", "a", "a", 0);
+        webcast.getWebcastResult();
+        ArrayList<Webcast> list = webcast.getAllWebcasts();
+
+        for (Webcast x : list) {
+            tableViewAllWebcasts.getItems().add(x.getTitle());
+        }
+      
+
 
 
         // Table view webcasts top 3

@@ -63,7 +63,7 @@ public class Student {
                         studentInfo.add(student);
             }
         } catch (Exception e) {
-            System.out.println("wtf");
+            System.out.println(e);
         }
     }
 

@@ -63,7 +63,7 @@ public class StudentsScene extends Application {
                     studentStage.close();
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
-                    System.out.println("He");
+                    System.out.println(e);
                 }
             }
         });
