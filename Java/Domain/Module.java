@@ -44,6 +44,14 @@ public class Module extends ContentItems{
         manager.executeSql(moduleSql.insertModuleSql(ID, input));
     }
 
+    public void updateModule(String ID, String[] input){
+        manager.executeSql(moduleSql.updateModuleSql(ID, input));
+    }
+
+    public void deleteModule(String ID){
+        manager.executeSql(moduleSql.deleteModuleSql(ID));
+    }
+
     public ArrayList<Module> getModuleInfo(){
         return moduleInfo;
     }
