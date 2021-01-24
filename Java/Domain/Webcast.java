@@ -15,24 +15,11 @@ public class Webcast extends ContentItems {
     private String url;
     private int amountWatched;
     protected ArrayList<Webcast> webcastInfoArrayList;
+    protected ArrayList<Webcast> topWebcasts;
 
     SqlManager manager = new SqlManager();
     WebcastSql webcastSql = new WebcastSql();
 
-
-    // Nieuwe code (nieuw is niet altijd beter)
-    // public void getWebcastResult() {
-    //     ResultSet webcastsRS = manager.executeSql(webcastSql.selectWebcastsSql());
-    //     try {
-    //         while (webcastsRS.next()) {
-    //             Webcast name = new Webcast(webcastsRS.getString("Title"), webcastsRS.getInt("TimeSpan"),
-    //                     webcastsRS.getString("Discription"), webcastsRS.getString("SpeakerName"),
-    //                     webcastsRS.getString("Orginisation"), webcastsRS.getString("URL"),
-    //                     webcastsRS.getInt("AmountWatched"));
-    //         }
-    //     } catch (Exception e) {
-    //     }
-    // }
     public void getWebcastResult() {
         ResultSet webcastRS = manager.executeSql(webcastSql.selectWebcastsSql());
         try {
@@ -45,15 +32,36 @@ public class Webcast extends ContentItems {
         }
     }
 
+    public void getTopWebcastsResult() {
+        ResultSet webcastRS = manager.executeSql(webcastSql.selectWebcastsTopSql());
+        try {
+            while (webcastRS.next()) {
+                Webcast webcast = new Webcast(webcastRS.getString("Title"), webcastRS.getInt("TimeSpan"), webcastRS.getString("Discription"), webcastRS.getString("SpeakerName"), webcastRS.getString("Organisation"), webcastRS.getString("URL"), webcastRS.getInt("AmountWatched"));
+                topWebcasts.add(webcast);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public Webcast(String title, int timeSpan, String description, String speakerName, String speakerCompany,
             String url, int amountWatched) {
         this.webcastInfoArrayList = new ArrayList<>();
+        this.topWebcasts = new ArrayList<>();
         this.title = title;
         this.timeSpan = timeSpan;
         this.description = description;
         this.speakerName = speakerName;
         this.url = url;
         this.amountWatched = amountWatched;
+    }
+
+    public ArrayList<Webcast> getAllWebcasts(){
+        return webcastInfoArrayList;
+    }
+
+    public ArrayList<Webcast> getTopWebcasts(){
+        return topWebcasts;
     }
 
     public String getTitle(){
