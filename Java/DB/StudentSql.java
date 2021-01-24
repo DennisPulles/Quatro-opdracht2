@@ -16,6 +16,11 @@ public class StudentSql {
         return "SELECT * FROM Student WHERE StudentEmail = '" + ID + "'";
     }
 
+    //progression of course for one student.
+    public String selectStudentModuleCompletionOnCourse(String ID){
+        return "SELECT ModuleCompletion.CourseName, ModuleCompletion.PercentageCompleted FROM ModuleCompletion INNER JOIN Certificate ON ModuleCompletion.CertificateID = Certificate.CertificateID INNER JOIN Registration ON Certificate.CertificateID = Registration.CertificateID INNER JOIN Student ON Registration.StudentEmail = Student.StudentEmail WHERE Student.StudentEmail = ' " + ID + "'";
+    }
+    
     //Update
     public String updateStudentSql(String ID, String input[]){
         return "UPDATE Student SET StudentEmail = '" + input[0] + "', StudentName = '" + input[1] + "', StudentBirthdate = '" + input[2] + "', Gender = '" + input[3] + "', Address = '" + input[4] + "', City = '" + input[5] + "', Country = '" + input[6] + "', Zipcode = '" + input[6] + " WHERE StudentEmail = ' " + ID + "'";
