@@ -1,62 +1,52 @@
 package Java.UI;
 
-import javafx.scene.control.CheckBox;
-
 public class addCourse {
-
-    private CheckBox checkBox;
-    private String title;
-    private String version;
-    private String description;
-    private String nameOfContact;
-
-    public addCourse(CheckBox checkBox, String title, String version, String speaker, String nameOfContact) {
-        this.checkBox = checkBox;
-        this.title = title;
-        this.version = version;
-        this.description = speaker;
-        this.nameOfContact = nameOfContact;
-    }
-
-    public CheckBox getCheckBox() {
-        return checkBox;
-    }
-
-    public void setCheckBox(CheckBox checkBox) {
-        this.checkBox = checkBox;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getNameOfContact() {
-        return nameOfContact;
-    }
-
-    public void setNameOfContact(String nameOfContact) {
-        this.nameOfContact = nameOfContact;
-    }
-
    
+    private String name; 
+    private String subject; 
+    private String introductoryText; 
+    private String difficulty;
+
+    public addCourse(String name, String subject, String introductoryText, String difficulty) {
+        this.name = name;
+        this.subject = subject;
+        this.introductoryText = introductoryText;
+        this.difficulty = difficulty;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getIntroductoryText() {
+        return introductoryText;
+    }
+
+    public void setIntroductoryText(String introductoryText) {
+        this.introductoryText = introductoryText;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    
+    
+    
 }

@@ -2,26 +2,27 @@ package Java.UI;
 
 import java.util.ArrayList;
 
-import Java.Domain.Course;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 
 public class CreateCourseScene extends Application {
 
@@ -36,6 +37,11 @@ public class CreateCourseScene extends Application {
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setVgap(10);
         grid.setHgap(10);
+
+        // Putting the grid inside an HBox
+        HBox hbox1 = new HBox();
+        hbox1.getChildren().addAll(grid);
+        hbox1.setAlignment(Pos.CENTER);
 
         // Labelling the input field
         Label courseNameLabel = new Label("Cursus naam: ");
@@ -96,29 +102,16 @@ public class CreateCourseScene extends Application {
         courseListModule.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         courseListModule.setPrefSize(600, 600);
 
-        CheckBox checkBoxModule1 = new CheckBox();
-        CheckBox checkBoxModule2 = new CheckBox();
-        CheckBox checkBoxModule3 = new CheckBox();
-        CheckBox checkBoxModule4 = new CheckBox();
-        CheckBox checkBoxModule5 = new CheckBox();
-
-        ArrayList<CheckBox> arrayListModule = new ArrayList<>();
-        arrayListModule.add(checkBoxModule1);
-        arrayListModule.add(checkBoxModule2);
-        arrayListModule.add(checkBoxModule3);
-        arrayListModule.add(checkBoxModule4);
-        arrayListModule.add(checkBoxModule5);
-
         // Make columns
-        TableColumn<Course, CheckBox> column1 = new TableColumn<>("Toevoegen");
+        TableColumn<Module, CheckBox> column1 = new TableColumn<>("Toevoegen");
         column1.setCellValueFactory(new PropertyValueFactory<>("checkBox"));
-        TableColumn<Course, String> column2 = new TableColumn<>("Titel");
+        TableColumn<Module, String> column2 = new TableColumn<>("Titel");
         column2.setCellValueFactory(new PropertyValueFactory<>("title"));
-        TableColumn<Course, String> column3 = new TableColumn<>("Versie");
+        TableColumn<Module, String> column3 = new TableColumn<>("Versie");
         column3.setCellValueFactory(new PropertyValueFactory<>("version"));
-        TableColumn<Course, String> column4 = new TableColumn<>("Beschrijving");
+        TableColumn<Module, String> column4 = new TableColumn<>("Beschrijving");
         column4.setCellValueFactory(new PropertyValueFactory<>("description"));
-        TableColumn<Course, String> column5 = new TableColumn<>("Naam van contactpersoon");
+        TableColumn<Module, String> column5 = new TableColumn<>("Naam van contactpersoon");
         column5.setCellValueFactory(new PropertyValueFactory<>("nameOfContact"));
 
         // Add columns to table
@@ -128,10 +121,14 @@ public class CreateCourseScene extends Application {
         courseListModule.getColumns().add(column4);
         courseListModule.getColumns().add(column5);
 
-        courseListModule.getItems().add(new addCourse(checkBoxModule1, "Elements and Structure", "1.14.3",
-                "Learn about HTML elements and structure, the building blocks of websites.", "Harley Bray"));
-        courseListModule.getItems().add(new addCourse(checkBoxModule2, "Tables", "1.16.3",
-                "Learn all the syntax you need to create tables in your HTML documents.", "Alice Edwards"));
+        ArrayList<addModule> arrayListModule = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            addModule addModule1 = new addModule((new CheckBox()), "Elements and Structure", "1.14.3",
+                    "Learn about HTML elements and structure, the building blocks of websites.", "Harley Bray");
+            courseListModule.getItems().add(addModule1);
+            arrayListModule.add(addModule1);
+        }
 
         GridPane.setConstraints(courseListModule, 1, 4);
         grid.getChildren().add(courseListModule);
@@ -155,15 +152,9 @@ public class CreateCourseScene extends Application {
         GridPane.setColumnSpan(label, 2);
         grid.getChildren().add(label);
 
-        // Putting the grid inside an HBox
-        HBox hbox1 = new HBox();
-        hbox1.getChildren().addAll(grid);
-        hbox1.setAlignment(Pos.CENTER);
-
         // Create a back button
         Button backButton = new Button("Terug");
         backButton.setStyle("-fx-font-size: 2em; -fx-background-color: #8F8F8F;");
-        // backButton.setLineSpacing(25);
         backButton.setEffect(new DropShadow());
 
         // Putting the backbutton inside hbox2
@@ -207,8 +198,8 @@ public class CreateCourseScene extends Application {
             @Override
             public void handle(ActionEvent e) {
                 Boolean isTrue = false;
-                for (CheckBox i : arrayListModule) {
-                    if (i.isSelected()) {
+                for (addModule i : arrayListModule) {
+                    if (i.getCheckBox().isSelected()) {
                         isTrue = true;
                     }
                 }
@@ -252,8 +243,8 @@ public class CreateCourseScene extends Application {
                 label.setText(null);
                 courseDifficulty.setValue(null);
                 courseDifficulty.setPromptText("Niveau");
-                for (CheckBox i : arrayListModule) {
-                    i.setSelected(false);
+                for (addModule i : arrayListModule) {
+                    i.getCheckBox().setSelected(false);
                 }
             }
         });
