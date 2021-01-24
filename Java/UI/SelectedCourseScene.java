@@ -2,35 +2,33 @@ package Java.UI;
 
 import java.util.ArrayList;
 
-import Java.UI.CourseScene;
 import Java.Domain.Course;
-import Java.UI.addCourse;
+import Java.UI.addCertificate;
 import javafx.application.Application;
-import javafx.beans.value.WeakChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class SelectedCourseScene extends CourseScene {
-String test123 = "fdsafsdfsafas";
+public class SelectedCourseScene extends Application {
+    Label welcomeText = new Label();
+
+    public void setLabelText(String text) {
+        welcomeText.setText(text);
+    }
 
     @Override
     public void start(Stage courseStage) throws Exception {
-        test123 = super.temporary;
-        System.out.println(super.temporary);
-        System.out.println(test123);
         courseStage.setTitle("Codecademy");
-        Label welcomeText = new Label(super.temporary);
+
+        String courseName = "";
+
         welcomeText.setStyle("-fx-font-size:8em; ");
 
         // Creating a GridPane container
@@ -96,7 +94,7 @@ String test123 = "fdsafsdfsafas";
         // right spot
         for (Course x : courseList) {
             tableViewAll.getItems()
-                    .add(new addCourse(x.getCourseName(), x.getSubject(), x.getIntroductoryText(), x.getDifficulty()));
+                    .add(new addCourse(x.getName(), x.getSubject(), x.getIntroductoryText(), x.getDifficulty()));
         }
 
         // Add the table to the grid
@@ -186,4 +184,5 @@ String test123 = "fdsafsdfsafas";
             }
         });
     }
+
 }
