@@ -16,6 +16,10 @@ public class WebcastSql {
         return "SELECT Title, TimeSpan, Discription, SpeakerName, Organisation, URL, AmountWatched FROM Webcast INNER JOIN ContentItem ON Webcast.ContentItemID = ContentItem.ContentItemID";
     }
 
+    public String selectWebcastsTopSql(){
+        return "SELECT TOP 3 AmountWatched FROM Webcast ORDER BY AmountWatched desc";
+    }
+
     //Update
     public String updateWebcastSql(String ID, String input[]){
         return "UPDATE Webcast SET TimeSpan = '" + input[0] + "', SpeakerName ='" + input[1] + "', Orginisation, ='" + input[2] + "', URL ='" + input[3] + "' WHERE ContentItemID = '" + ID + "',";
