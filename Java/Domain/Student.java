@@ -1,7 +1,6 @@
 package Java.Domain;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Java.DB.SqlManager;
@@ -16,14 +15,15 @@ public class Student {
     private String city;
     private String country;
     private String postalCode;
-    protected ArrayList<Student> studentInfoArrayList;
+    protected ArrayList<Student> studentInfo;
 
+    //give the class access to the functions from manager and studentSql
     SqlManager manager = new SqlManager();
     StudentSql studentSql = new StudentSql();
 
     public Student(String studentEmail, String studentName, String studentBirthdate, String gender, String address,
             String city, String country, String postalCode) {
-        this.studentInfoArrayList = new ArrayList<>();
+        this.studentInfo = new ArrayList<>();
         this.studentEmail = studentEmail;
         this.studentName = studentName;
         this.address = address;
@@ -32,12 +32,10 @@ public class Student {
         this.postalCode = postalCode;
         this.studentBirthdate = studentBirthdate;
         this.gender = gender;
-
-        // String studentEmail, String studentName, String adres, String city, String
-        // country, String postalCode, String gender, String studentBirthdate
-
     }
 
+    //Sql functions
+    //getting all students and put them in a arraylist called studentInfo
     public void getStudentResult() {
         ResultSet studentRS = manager.executeSql(studentSql.selectStudentsSql());
         try {
@@ -46,7 +44,7 @@ public class Student {
                         studentRS.getString("Address"), studentRS.getString("City"),
                         studentRS.getString("Country"), studentRS.getString("Zipcode")
                         );
-                        studentInfoArrayList.add(student);
+                        studentInfo.add(student);
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -65,8 +63,9 @@ public class Student {
         manager.executeSql(studentSql.deleteStudentSql(ID));
     }
 
+    //getters for all variables
     public ArrayList<Student> getAllStudents(){
-        return studentInfoArrayList;
+        return studentInfo;
     }
 
     public String getStudentEmail(){       
@@ -100,12 +99,4 @@ public class Student {
     public String getPostalCode() {
         return postalCode;
     }
-
-
-
-  
-
-    // public static void main(String[] args) {
-    //     Student student = new Student("Tde@as.as", "Tim", "15-01-2002", "Man", "AA", "BB", "CC", "2453AA");
-    // } 
 }
