@@ -12,6 +12,11 @@ public class CertificateSql {
         return "SELECT * FROM Certificate INNER JOIN Registration ON Certificate.CertificateID = Registration.CertificateID";
     }
 
+    //Courses for which a student has a certificate
+    public String selectCertificatesEarnedSql(String email){
+        return "SELECT Registration.CourseName FROM Student INNER JOIN Registration ON Student.StudentEmail = Registration.StudentEmail INNER JOIN Certificate ON Registration.CertificateID = Certificate.CertificateID WHERE Student.StudentEmail = '" + email + "'' AND SignatoryName IS NOT NULL";
+    }
+
     //Certificate from specific student.
     public String selectCertificateSpecificStudent(String ID){
         return "SELECT * FROM Certificate INNER JOIN Registration ON Certificate.CertificateID = Registration.CertificateID WHERE Registration.StudentEmail = '" + ID + "'";
