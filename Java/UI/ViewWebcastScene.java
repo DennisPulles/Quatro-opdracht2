@@ -1,5 +1,6 @@
 package Java.UI;
 
+import Java.Domain.Webcast;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
