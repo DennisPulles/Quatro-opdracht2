@@ -16,6 +16,11 @@ public class StudentSql {
         return "SELECT * FROM Student WHERE StudentEmail = '" + ID + "'";
     }
 
+    //Get courses the student hasn't completed
+    public String selectStudentCourses(String email){
+        return "SELECT Registration.CourseName FROM Student INNER JOIN Registration ON Student.StudentEmail = Registration.StudentEmail INNER JOIN Certificate ON Registration.CertificateID = Certificate.CertificateID WHERE Student.StudentEmail = '" + email + "' AND SignatoryName IS NULL";
+    }
+
     //progression of course for one student.
     public String selectStudentModuleCompletionOnCourse(String ID){
         return "SELECT ModuleCompletion.CourseName, ModuleCompletion.PercentageCompleted FROM ModuleCompletion INNER JOIN Certificate ON ModuleCompletion.CertificateID = Certificate.CertificateID INNER JOIN Registration ON Certificate.CertificateID = Registration.CertificateID INNER JOIN Student ON Registration.StudentEmail = Student.StudentEmail WHERE Student.StudentEmail = ' " + ID + "'";
