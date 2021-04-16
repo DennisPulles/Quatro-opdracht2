@@ -1,5 +1,6 @@
 package Java.UI;
 
+import Java.Domain.ContentItems;
 import Java.Domain.Webcast;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -33,7 +34,7 @@ public class ViewWebcastScene extends Application {
 
         TableView tableView = new TableView<>();
 
-        TableColumn<ContentItem, String> column1 = new TableColumn<>("ID");
+        TableColumn<ContentItems, String> column1 = new TableColumn<>("ID");
         column1.setCellValueFactory(new PropertyValueFactory<>("ContentItemID"));
         TableColumn<Webcast, String> column2 = new TableColumn<>("Naam");
         column2.setCellValueFactory(new PropertyValueFactory<>("Title"));

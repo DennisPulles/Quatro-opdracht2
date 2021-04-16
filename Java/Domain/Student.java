@@ -2,6 +2,7 @@ package Java.Domain;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import Java.DB.SqlManager;
 import Java.DB.StudentSql;
@@ -114,5 +115,11 @@ public class Student {
 
     public String getPostalCode() {
         return postalCode;
+    }
+    // public String selectStudentCourses(String email){
+    //     return "SELECT Registration.CourseName FROM Student INNER JOIN Registration ON Student.StudentEmail = Registration.StudentEmail INNER JOIN Certificate ON Registration.CertificateID = Certificate.CertificateID WHERE Student.StudentEmail = '" + email + "' AND SignatoryName IS NULL";
+    // }
+    public List<String> getStudentCourses(){
+        return null;
     }
 }
