@@ -14,7 +14,7 @@ public class CertificateSql {
 
     //Courses for which a student has a certificate
     public String selectCertificatesEarnedSql(String email){
-        return "SELECT Registration.CourseName FROM Student INNER JOIN Registration ON Student.StudentEmail = Registration.StudentEmail INNER JOIN Certificate ON Registration.CertificateID = Certificate.CertificateID WHERE Student.StudentEmail = '" + email + "'' AND SignatoryName IS NOT NULL";
+        return "SELECT Registration.CourseName FROM Student INNER JOIN Registration ON Student.StudentEmail = Registration.StudentEmail INNER JOIN Certificate ON Registration.CertificateID = Certificate.CertificateID WHERE Student.StudentEmail = '" + email + "' AND SignatoryName IS NOT NULL";
     }
 
     //Certificate from specific student.

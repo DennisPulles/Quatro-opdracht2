@@ -1,7 +1,10 @@
 package Java.UI;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import Java.DB.CertificateSql;
+import Java.Domain.Certificate;
 import Java.Domain.Student;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -34,7 +37,8 @@ public class ViewStudentScene extends Application {
     @Override
     public void start(Stage viewStudentStage) throws Exception {
         // TODO Auto-generated method stub
-        viewStudentStage.setTitle("Dennis Pulles(2153026), Guus Korbijn(2168557), Tim de Laater(2171083) & Wouter Zegers(2172665)");
+        viewStudentStage.setTitle(
+                "Dennis Pulles(2153026), Guus Korbijn(2168557), Tim de Laater(2171083) & Wouter Zegers(2172665)");
 
         // Welcome text and back button
         Label welcomeText = new Label("Cursist");
@@ -70,8 +74,15 @@ public class ViewStudentScene extends Application {
         vbox1.getChildren().addAll(labelData, data);
 
         // Listview for all the certificates
+
+        Certificate c = new Certificate(1, 1, "");
+        List<String> resultList = c.getStudentCertificates(email);
+
         ListView allCertificatesListView = new ListView();
-        allCertificatesListView.getItems().add("a");
+        for(String x :resultList){
+            allCertificatesListView.getItems().add(x);
+        }
+        
 
         // Listview for all the courses
         ListView courses = new ListView();
@@ -98,8 +109,6 @@ public class ViewStudentScene extends Application {
         Label webcasts = new Label("Webcasts");
         webcasts.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
         VBox prog2 = new VBox(webcasts, progresBar2);
-
-       
 
         vbox3.getChildren().addAll(prog1, prog2);
         vbox3.setSpacing(70);
