@@ -68,7 +68,7 @@ public class Certificate {
         try {
             while (cSpecStudent.next()) {
                 String courseName = cSpecStudent.getString("courseName");
-                System.out.println(courseName);
+
                 listc.add(courseName);
             }
         } catch (Exception e) {

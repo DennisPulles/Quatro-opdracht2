@@ -85,10 +85,14 @@ public class ViewStudentScene extends Application {
         
 
         // Listview for all the courses
-        ArrayList<String> courList = studentEmail.selectStudentCourses();
+        Student studentcourse = new Student(email,"a","a", "a", "a", "a", "a", "a");
+        List<String> courList = studentcourse.getStudentCourses();
         ListView courses = new ListView();
+        
+        
         for(String x :courList){
             courses.getItems().add(x);
+            
         }
         vbox2.getChildren().addAll(allCertificates, allCertificatesListView, courses);
         vbox2.setSpacing(10);

@@ -1,6 +1,7 @@
 package Java.Domain;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,6 +121,18 @@ public class Student {
     //     return "SELECT Registration.CourseName FROM Student INNER JOIN Registration ON Student.StudentEmail = Registration.StudentEmail INNER JOIN Certificate ON Registration.CertificateID = Certificate.CertificateID WHERE Student.StudentEmail = '" + email + "' AND SignatoryName IS NULL";
     // }
     public List<String> getStudentCourses(){
-        return null;
+        List<String> listc = new ArrayList<>();
+        ResultSet cSpecStudent = manager.executeSql(studentSql.selectStudentCourses(studentEmail));
+        try {
+
+            while (cSpecStudent.next()) {
+                String courseName = cSpecStudent.getString("courseName");
+
+                listc.add(courseName);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return listc;
     }
 }
