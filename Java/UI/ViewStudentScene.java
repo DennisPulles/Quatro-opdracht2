@@ -41,8 +41,9 @@ public class ViewStudentScene extends Application {
         welcomeText.setStyle("-fx-font-size:8em; ");
         Button backButton = new Button("Terug");
         Label labelData = new Label("Gegevens");
+        labelData.setFont(new Font(30.0));
         Label allCertificates = new Label("Behaalde certificaten");
-
+        allCertificates.setFont(new Font(30.0));
         // Create Vboxes and Hboxes
         VBox vbox1 = new VBox();
         VBox vbox2 = new VBox();
@@ -76,6 +77,7 @@ public class ViewStudentScene extends Application {
         ListView courses = new ListView();
         courses.getItems().add("a");
         vbox2.getChildren().addAll(allCertificates, allCertificatesListView, courses);
+        vbox2.setSpacing(10);
 
         // Progressbars
         ProgressBar pb1 = new ProgressBar(0.6);
@@ -97,9 +99,9 @@ public class ViewStudentScene extends Application {
         webcasts.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
         VBox prog2 = new VBox(webcasts, progresBar2);
 
-        Button create = new Button("Aanmaken");
+       
 
-        vbox3.getChildren().addAll(prog1, prog2, create);
+        vbox3.getChildren().addAll(prog1, prog2);
         vbox3.setSpacing(70);
 
         HBox hbox = new HBox();

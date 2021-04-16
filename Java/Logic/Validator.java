@@ -35,7 +35,7 @@ public class Validator {
         //* zero or more after this
         //() as a capturing group
         //$	The end of a line
-        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)*[\\w]*[\\w]$";
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]*[\\w]$";
         // return outcome determined whether email matches the regex key
         return email.matches(regex);
     }
