@@ -56,6 +56,7 @@ public class Certificate {
     public float getGrade() {
         return grade;
     }
+    /// Kaas
 
     public String getSignatoryName() {
         return signatoryName;
