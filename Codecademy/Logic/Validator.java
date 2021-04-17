@@ -3,7 +3,7 @@ package Codecademy.Logic;
 public class Validator {
     
 
-    static boolean percentageValidator(int number){
+    public boolean percentageValidator(int number){
         //any number lower than zero is invalid
         //any number higher than one hundred is invalid
 
@@ -14,7 +14,7 @@ public class Validator {
         return false;
     }
 
-    static boolean gradeValidator(int number){
+    public boolean gradeValidator(int number){
         //any number lower than one is invalid
         //any number higher than ten is invalid
 

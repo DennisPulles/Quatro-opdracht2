@@ -3,14 +3,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
 
+import Codecademy.Logic.Validator;
+
 public class PostalCodeTest {
     @Test
     public void nullPointerExceptionPostalCode (){
          //arrange
-         ValitdatePostalCode x = new ValitdatePostalCode();
+         Validator validator = new Validator();
 
          //act
-        String valid = x.formatPostalCode(null);
+        String valid = validator.formatPostalCode(null);
  
          //assert
          assertEquals("NullPointerException", valid);
@@ -18,10 +20,10 @@ public class PostalCodeTest {
     @Test
     public void notEnoughNumbers (){
         //arrange
-        ValitdatePostalCode y = new ValitdatePostalCode();
+        Validator validator = new Validator();
 
         //act
-       String valid = y.formatPostalCode("123AB");
+       String valid = validator.formatPostalCode("123AB");
 
         //assert
         assertEquals("IllegalArgumentException", valid);
@@ -29,10 +31,10 @@ public class PostalCodeTest {
    @Test
    public void good (){
      //arrange
-     ValitdatePostalCode z = new ValitdatePostalCode();
+     Validator validator = new Validator();
 
      //act
-    String valid = z.formatPostalCode("1234ab");
+    String valid = validator.formatPostalCode("1234ab");
 
      //assert
      assertEquals("1234 AB", valid);
@@ -40,10 +42,10 @@ public class PostalCodeTest {
 @Test
 public void differentInput (){
      //arrange
-     ValitdatePostalCode a = new ValitdatePostalCode();
+     Validator validator = new Validator();
 
      //act
-    String valid = a.formatPostalCode("Kaas");
+    String valid = validator.formatPostalCode("Kaas");
 
      //assert
      assertEquals("IllegalArgumentException", valid);

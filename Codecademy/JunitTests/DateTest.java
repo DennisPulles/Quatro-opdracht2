@@ -3,14 +3,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
 
+import Codecademy.Logic.Validator;
+
 public class DateTest {
     @Test
     public void testDateOutOfRangeFebInLeapYear(){
         //arrange
-        ValidateDate x = new ValidateDate();
+        Validator validator= new Validator();
 
         //act
-       boolean valid = x.validateDate(30, 2, 2020);
+       boolean valid = validator.validateDate(30, 2, 2020);
 
         //assert
         assertEquals(false, valid);
@@ -18,10 +20,10 @@ public class DateTest {
     @Test
     public void testDateInRangeNov(){
         //arrange
-        ValidateDate y = new ValidateDate();
+        Validator validator= new Validator();
 
         //act
-       boolean valid = y.validateDate(23, 11, 2020);
+       boolean valid = validator.validateDate(23, 11, 2020);
 
         //assert
         assertEquals(true, valid);
@@ -29,10 +31,10 @@ public class DateTest {
     @Test
     public void testDateInRangeFebInLeapYear(){
         //arrange
-        ValidateDate z = new ValidateDate();
+        Validator validator= new Validator();
 
         //act
-       boolean valid = z.validateDate(12, 2, 2020);
+       boolean valid = validator.validateDate(12, 2, 2020);
 
         //assert
         assertEquals(true, valid);
@@ -40,10 +42,10 @@ public class DateTest {
     @Test
     public void testDateOutOfRangeApr(){
         //arrange
-        ValidateDate a = new ValidateDate();
+        Validator validator= new Validator();
 
         //act
-       boolean valid = a.validateDate(31, 4, 2002);
+       boolean valid = validator.validateDate(31, 4, 2002);
 
         //assert
         assertEquals(false, valid);
