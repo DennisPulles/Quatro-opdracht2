@@ -15,6 +15,7 @@ import Codecademy.Domain.Course;
 import Codecademy.Domain.Registration;
 import Codecademy.Domain.Student;
 import Codecademy.Domain.Webcast;
+import Codecademy.Logic.Validator;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,6 +36,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 // import jdk.internal.util.xml.impl.Input;
+import jdk.jfr.ValueDescriptor;
 
 public class CertificateScene extends Application {
 
@@ -160,9 +162,15 @@ public class CertificateScene extends Application {
                 System.out.println(certificateView.getItems().size());
                 for (int i = 0; i < certificateView.getItems().size(); i++) {
                     if (column5.getCellData(i).getText() != null) {
+                        Validator validator = new Validator();
+                        if (validator.signatoryNameValidator(column5.getCellData(i).getText())) {
                         manager.executeSql(certificateSql.updateCertificateSql(registrationList.get(i).getCertificateID(), column5.getCellData(i).getText()));
                         System.out.println(column5.getCellData(i).getText());
                         label.setText("Het certificaat van student " + registrationList.get(i).getStudentEmail() + " is afgerond!");
+                    } else {
+                        label.setText("Vul een valide naam in");
+                        System.out.println("Wat in de tyfus");
+                    }
                     }
                 }
                 System.out.println("button pressed");
