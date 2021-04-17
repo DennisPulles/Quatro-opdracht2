@@ -24,12 +24,12 @@ public class CertificateSql {
 
     //Certificates that have a student but no signatory name 
     public String selectUnfinishedCertificates(){ 
-        return "SELECT * FROM Certificate INNER JOIN Registration ON Certificate.CertificateID = Registration.CertificateID WHERE SignatoryName IS NULL"; 
+        return "SELECT Certificate.CertificateID, Grade, StudentEmail, CourseName, RegistrationDate, SignatoryName FROM Certificate INNER JOIN Registration ON Certificate.CertificateID = Registration.CertificateID WHERE SignatoryName IS NULL"; 
     } 
 
     //update
-    public String updateCertificateSql(String ID, String input[]){
-        return "UPDATE Certificate SET Grade = '" + input[0] + "', SignatoryName = '" + input[1] + "' WHERE CertificateID = '" + ID + "'";
+    public String updateCertificateSql(int ID, String signatory){
+        return "UPDATE Certificate SET SignatoryName = '" + signatory + "' WHERE CertificateID = '" + ID + "'";
     }
 
     //delete

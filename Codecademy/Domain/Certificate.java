@@ -31,7 +31,7 @@ public class Certificate {
             System.out.println(e);
         }
     }
-    public void updateCertificate(String ID, String[] input) {
+    public void updateCertificate(int ID, String input) {
         manager.executeSql(certificateSql.updateCertificateSql(ID, input));
     }
     public void insertCertificate(String[] input) {

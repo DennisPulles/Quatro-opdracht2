@@ -21,10 +21,12 @@ public class Registration {
     private int certificateID;
     protected ArrayList<Registration> registrationInfo;
     private TextField textField;
+    protected ArrayList<Registration> unfinishedRegistrationInfo;
 
     public Registration(String studentEmail, String courseName, Date registrationDate, double grade, String signatoryName,
             int certificateID) {
         this.registrationInfo = new ArrayList<>();
+        this.unfinishedRegistrationInfo = new ArrayList<>();
         this.studentEmail = studentEmail;
         this.courseName = courseName;
         this.registrationDate = registrationDate;
@@ -50,6 +52,21 @@ public class Registration {
                         certificateRS.getFloat("Grade"), certificateRS.getString("SignatoryName"),
                         certificateRS.getInt("CertificateID"));
                 registrationInfo.add(registration);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void getUnfinishedRegistrationResult() {
+        ResultSet certificateRS = manager.executeSql(certificateSql.selectUnfinishedCertificates());
+        try {
+            while (certificateRS.next()) {
+                Registration unfinishedRegistration = new Registration(certificateRS.getString("StudentEmail"),
+                certificateRS.getString("CourseName"), certificateRS.getDate("RegistrationDate"),
+                        certificateRS.getFloat("Grade"), certificateRS.getString("SignatoryName"),
+                        certificateRS.getInt("CertificateID"));
+                unfinishedRegistrationInfo.add(unfinishedRegistration);
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -109,5 +126,9 @@ public class Registration {
 
     public ArrayList<Registration> getRegistrationInfo() {
         return registrationInfo;
+    }
+
+    public ArrayList<Registration> getUnfinishedRegistrationInfo() {
+        return unfinishedRegistrationInfo;
     }
 }

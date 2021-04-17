@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import javax.swing.Action;
 import javax.swing.JOptionPane;
 
+import Codecademy.DB.CertificateSql;
 import Codecademy.DB.RegistrationSql;
+import Codecademy.DB.SqlManager;
 import Codecademy.Domain.Certificate;
 import Codecademy.Domain.Course;
 import Codecademy.Domain.Registration;
@@ -57,6 +59,7 @@ public class CertificateScene extends Application {
         // });
         // TextField textField = new TextField();
         // Make columns
+        TextFieldTableCell textfield = new TextFieldTableCell < > ();
         TableColumn < Registration, String > column1 = new TableColumn < > ("Cursist");
         column1.setCellValueFactory(new PropertyValueFactory < > ("studentEmail"));
         TableColumn < Registration, String > column2 = new TableColumn < > ("Cursus");
@@ -65,11 +68,11 @@ public class CertificateScene extends Application {
         column3.setCellValueFactory(new PropertyValueFactory < > ("registrationDate"));
         TableColumn < Registration, Double > column4 = new TableColumn < > ("Beoordeling");
         column4.setCellValueFactory(new PropertyValueFactory < > ("grade"));
-        TableColumn < Registration, String > column5 = new TableColumn < > ("Ondertekenaar");
-        column5.setCellValueFactory(new PropertyValueFactory<Registration, String>("textField"));
+        TableColumn < Registration, TextField > column5 = new TableColumn < > ("Ondertekenaar");
+        column5.setCellValueFactory(new PropertyValueFactory < Registration, TextField > ("textField"));
         // TableColumn < Registration, String > column5 = new TableColumn < > ("Ondertekenaar");
         // column5.setCellValueFactory(new PropertyValueFactory < > ("textField"));
-        
+
         // column5.setCellFactory(TextFieldTableCell. < tableClass > forTableColumn());
 
         // TableColumn<Registration, CheckBox> column5 = new TableColumn<>("Handtekening");
@@ -88,22 +91,19 @@ public class CertificateScene extends Application {
         // Button registrationConfirmButton = new Button("ok");
 
         Registration registration = new Registration("", "", Date.valueOf("2020-03-31"), 0, "", 0);
-        registration.getRegistrationResult();
-        ArrayList < Registration > registrationList = registration.getRegistrationInfo();
+        registration.getUnfinishedRegistrationResult();
+        ArrayList < Registration > registrationList = registration.getUnfinishedRegistrationInfo();
 
         // Create a row for every entry in the table and add its information to the
         // right spot
 
         for (Registration x: registrationList) {
-            if (x.getSignatoryName() == null) {
                 int i = 1;
                 certificateView.getItems().add(new addRegistration(x.getStudentEmail(), x.getCourseName(),
-                    x.getRegistrationDate(), x.getGrade()));
-                TextField textfield = new TextField();
-            }
+                    x.getRegistrationDate(), x.getGrade(), x.getSignatoryName()));
         }
 
-    
+
 
         // Button to confirm
         Button button = new Button("Confirm");
@@ -118,18 +118,18 @@ public class CertificateScene extends Application {
 
 
 
-        VBox vboxTextfields = new VBox();
-        int length = registrationList.size();
-        for (int i = 0; i< length; i++){
-            String textfieldname = "textfield" + i;
-            TextField  = new TextField(textfieldname);
-        }
+        // VBox vboxTextfields = new VBox();
+        // int length = registrationList.size();
+        // for (int i = 0; i< length; i++){
+        //     String textfieldname = "textfield" + i;
+        //     TextField  = new TextField(textfieldname);
+        // }
 
 
-        vboxTextfields.getChildren().addAll(tex);
-        vbox.getChildren().addAll(certificateView, button, label, vboxTextfields);
+        // vboxTextfields.getChildren().addAll(tex);
+        vbox.getChildren().addAll(certificateView, button, label);
         vbox.setSpacing(100);
-        hBox.getChildren().addAll(vbox, vboxTextfields);
+        // hBox.getChildren().addAll(vbox, vboxTextfields);
 
         BorderPane layout = new BorderPane();
         layout.setAlignment(welcomeText, Pos.TOP_CENTER);
@@ -145,48 +145,53 @@ public class CertificateScene extends Application {
         certificateStage.setMaximized(true);
         certificateStage.show();
 
-        
+
         // public void captureText(ActionEvent e) {
         //     registrationList.forEach(event -> {
         //         event.setCol1(event.getTextField().getText());
         //     });
         // }
-
+        SqlManager manager = new SqlManager();
+        CertificateSql certificateSql = new CertificateSql();
 
         button.setOnAction(new EventHandler < ActionEvent > () {
             @Override
             public void handle(ActionEvent e) {
-                
+                System.out.println(certificateView.getItems().size());
+                for (int i = 0; i < certificateView.getItems().size(); i++) {
+                    if (column5.getCellData(i).getText() != null) {
+                        manager.executeSql(certificateSql.updateCertificateSql(registrationList.get(i).getCertificateID(), column5.getCellData(i).getText()));
+                        System.out.println(column5.getCellData(i).getText());
+                        label.setText("Het certificaat van student " + registrationList.get(i).getStudentEmail() + " is afgerond!");
+                    }
+                }
                 System.out.println("button pressed");
+                System.out.println(column5.getCellData(1).getText());
 
-                System.out.println(column5.getId());
 
-                System.out.println(column5.getCellObservableValue(certificateStage.getItems().get(0))
-                JOptionPane.showMessageDialog(null, column5.getCellObservableValue();
+                //     for (Registration x: registrationList) {
+                //         if (x.getTextField().getText() != null) {
+                //             if (!x.getTextField().getText().isEmpty()) {
+                //                 System.out.println("De signatory names zijn:");
+                //                 System.out.println(x.getTextField().getText());
+                //             }
+                //         }
+                //     }
 
-            //     for (Registration x: registrationList) {
-            //         if (x.getTextField().getText() != null) {
-            //             if (!x.getTextField().getText().isEmpty()) {
-            //                 System.out.println("De signatory names zijn:");
-            //                 System.out.println(x.getTextField().getText());
-            //             }
-            //         }
-            //     }
-
-            //     for (Registration x : registrationList) {
-            //         if (x.getSignatoryName() != null) {
-            //         if (!x.getSignatoryName().isEmpty()) {
-            //             System.out.println("de signatory name met 'signatoryName' is:");
-            //             System.out.println(x.getSignatoryName());
-            //         }
-            //     }
-            // }
-            // for (Registration x: registrationList){
-            //     if(!x.getTextField().getText().isEmpty()){
-            //         System.out.println(x.getTextField().getText());
-            //     }
-            // }
-            // }
+                //     for (Registration x : registrationList) {
+                //         if (x.getSignatoryName() != null) {
+                //         if (!x.getSignatoryName().isEmpty()) {
+                //             System.out.println("de signatory name met 'signatoryName' is:");
+                //             System.out.println(x.getSignatoryName());
+                //         }
+                //     }
+                // }
+                // for (Registration x: registrationList){
+                //     if(!x.getTextField().getText().isEmpty()){
+                //         System.out.println(x.getTextField().getText());
+                //     }
+                // }
+                // }
             }
         });
         // button.setOnAction(new EventHandler<ActionEvent>() {
