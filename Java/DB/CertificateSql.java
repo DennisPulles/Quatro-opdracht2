@@ -28,8 +28,8 @@ public class CertificateSql {
     }
 
     //update
-    public String updateCertificateSql(String ID, String input[]){
-        return "UPDATE Certificate SET Grade = '" + input[0] + "', SignatoryName = '" + input[1] + "' WHERE CertificateID = '" + ID + "'";
+    public String updateCertificateSql(String ID, String signatory){
+        return "UPDATE Certificate SET SignatoryName = '" + signatory + "' WHERE CertificateID = '" + ID + "'";
     }
 
     //delete
