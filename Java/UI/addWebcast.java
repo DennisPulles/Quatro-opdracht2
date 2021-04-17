@@ -2,47 +2,47 @@ package Java.UI;
 
 public class addWebcast {
 
-    private String name;
-    private int timesPlayed;
-    private String speaker;
-    private int duration;
+    private String title;
+    private int amountWatched;
+    private String speakerName;
+    private int timeSpan;
 
-    public addWebcast(String name, int timesPlayed, String speaker, int duration) {
-        this.name = name;
-        this.timesPlayed = timesPlayed;
-        this.speaker = speaker;
-        this.duration = duration;
+    public addWebcast(String title, int amountWatched, String speakerName, int timeSpan) {
+        this.title = title;
+        this.amountWatched = amountWatched;
+        this.speakerName = speakerName;
+        this.timeSpan = timeSpan;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public int getTimesPlayed() {
-        return timesPlayed;
+    public int getAmountWatched() {
+        return amountWatched;
     }
 
-    public void setTimesPlayed(int timesPlayed) {
-        this.timesPlayed = timesPlayed;
+    public void setAmountWatched(int amountWatched) {
+        this.amountWatched = amountWatched;
     }
 
-    public String getSpeaker() {
-        return speaker;
+    public String getSpeakerName() {
+        return speakerName;
     }
 
-    public void setSpeaker(String speaker) {
-        this.speaker = speaker;
+    public void setSpeakerName(String speakerName) {
+        this.speakerName = speakerName;
     }
 
-    public int getDuration() {
-        return duration;
+    public int getTimeSpan() {
+        return timeSpan;
     }
 
-    public void setDuration(Integer duration) {
-        this.duration = duration;
+    public void setTimeSpan(Integer timeSpan) {
+        this.timeSpan = timeSpan;
     }
 }

@@ -40,14 +40,14 @@ public class WebcastScene extends Application {
         tableViewAllWebcasts.setPrefSize( 600, 600 );
         
         // Make columns 
-        TableColumn<Webcast, String> column1 = new TableColumn<>("Naam");
-        column1.setCellValueFactory(new PropertyValueFactory<>("name"));
+        TableColumn<Webcast, String> column1 = new TableColumn<>("Titel");
+        column1.setCellValueFactory(new PropertyValueFactory<>("Title"));
         TableColumn<Webcast, Integer> column2 = new TableColumn<>("Aantal keren bekijken");
-        column2.setCellValueFactory(new PropertyValueFactory<>("timesPlayed"));
+        column2.setCellValueFactory(new PropertyValueFactory<>("AmountWatched"));
         TableColumn<Webcast, String> column3 = new TableColumn<>("Spreker");
-        column3.setCellValueFactory(new PropertyValueFactory<>("speaker"));
+        column3.setCellValueFactory(new PropertyValueFactory<>("SpeakerName"));
         TableColumn<Webcast, Integer> column4 = new TableColumn<>("Duur in minuten");
-        column4.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        column4.setCellValueFactory(new PropertyValueFactory<>("TimeSpan"));
 
         // Add columns to table
         tableViewAllWebcasts.getColumns().add(column1);
@@ -56,50 +56,49 @@ public class WebcastScene extends Application {
         tableViewAllWebcasts.getColumns().add(column4);
 
         // Add webcasts to table
-       
         Webcast webcast = new Webcast("a",0,"a", "a", "a", "a", 0);
         webcast.getWebcastResult();
         ArrayList<Webcast> list = webcast.getAllWebcasts();
 
         for (Webcast x : list) {
-            tableViewAllWebcasts.getItems().add(x.getTitle());
+            tableViewAllWebcasts.getItems().add(new addWebcast(x.getTitle(), x.getAmountWatched(), x.getSpeakerName(), x.getTimeSpan()));
         }
       
-
-
-
         // Table view webcasts top 3
-        TableView tableViewWebcastsTop3 = new TableView();
-        tableViewWebcastsTop3.setColumnResizePolicy( TableView.CONSTRAINED_RESIZE_POLICY );
-        tableViewWebcastsTop3.setPrefSize( 600, 103 );
+        TableView tableViewWebcastsTop = new TableView();
+        tableViewWebcastsTop.setColumnResizePolicy( TableView.CONSTRAINED_RESIZE_POLICY );
+        tableViewWebcastsTop.setPrefSize( 600, 103 );
 
         // Make columns 
-        TableColumn<Webcast, String> column1Top3 = new TableColumn<>("Naam");
-        column1Top3.setCellValueFactory(new PropertyValueFactory<>("name"));
+        TableColumn<Webcast, String> column1Top3 = new TableColumn<>("Titel");
+        column1Top3.setCellValueFactory(new PropertyValueFactory<>("Title"));
         TableColumn<Webcast, Integer> column2Top3 = new TableColumn<>("Aantal keren bekeken");
-        column2Top3.setCellValueFactory(new PropertyValueFactory<>("timesPlayed"));
+        column2Top3.setCellValueFactory(new PropertyValueFactory<>("AmountWatched"));
         TableColumn<Webcast, String> column3Top3 = new TableColumn<>("Spreker");
-        column3Top3.setCellValueFactory(new PropertyValueFactory<>("speaker"));
+        column3Top3.setCellValueFactory(new PropertyValueFactory<>("SpeakerName"));
         TableColumn<Webcast, Integer> column4Top3 = new TableColumn<>("Duur in minuten");
-        column4Top3.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        column4Top3.setCellValueFactory(new PropertyValueFactory<>("TimeSpan"));
 
         // Add columns to table
-        tableViewWebcastsTop3.getColumns().add(column1Top3);
-        tableViewWebcastsTop3.getColumns().add(column2Top3);
-        tableViewWebcastsTop3.getColumns().add(column3Top3);
-        tableViewWebcastsTop3.getColumns().add(column4Top3);
+        tableViewWebcastsTop.getColumns().add(column1Top3);
+        tableViewWebcastsTop.getColumns().add(column2Top3);
+        tableViewWebcastsTop.getColumns().add(column3Top3);
+        tableViewWebcastsTop.getColumns().add(column4Top3);
 
         // Add top 3 webcasts to table
-        tableViewWebcastsTop3.getItems().add(new addWebcast("Guus", 30, "Guus", 45));
-        tableViewWebcastsTop3.getItems().add(new addWebcast("Guus", 20, "Guus", 45));
-        tableViewWebcastsTop3.getItems().add(new addWebcast("Guus", 10, "Guus", 45));
+        webcast.getTopWebcastsResult();
+        ArrayList<Webcast> topList = webcast.getTopWebcasts();
+
+        for (Webcast i : topList) {
+            tableViewWebcastsTop.getItems().add(new addWebcast(i.getTitle(), i.getAmountWatched(), i.getSpeakerName(), i.getTimeSpan()));
+        }
 
         VBox tableViewAllWebcastsVbox = new VBox();
         tableViewAllWebcastsVbox.getChildren().addAll(allWebcasts, tableViewAllWebcasts);
         tableViewAllWebcastsVbox.setSpacing(10);
 
         VBox tableViewWebcastsTop3VBox = new VBox();
-        tableViewWebcastsTop3VBox.getChildren().addAll(top3Webcasts, tableViewWebcastsTop3);
+        tableViewWebcastsTop3VBox.getChildren().addAll(top3Webcasts, tableViewWebcastsTop);
         tableViewWebcastsTop3VBox.setSpacing(10);
 
         HBox hbox = new HBox();

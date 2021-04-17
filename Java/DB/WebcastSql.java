@@ -17,7 +17,7 @@ public class WebcastSql {
     }
 
     public String selectWebcastsTopSql(){
-        return "SELECT TOP 3 AmountWatched FROM Webcast ORDER BY AmountWatched desc";
+        return "SELECT TOP 3 * FROM Webcast INNER JOIN ContentItem ON Webcast.ContentItemID = ContentItem.ContentItemID ORDER BY AmountWatched desc";
     }
 
     //Update
