@@ -1,7 +1,7 @@
-package Java.UI;
+package Codecademy.UI;
 
-import Java.Domain.ContentItems;
-import Java.Domain.Webcast;
+import Codecademy.Domain.ContentItems;
+import Codecademy.Domain.Webcast;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
